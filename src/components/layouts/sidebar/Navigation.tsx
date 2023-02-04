@@ -8,7 +8,7 @@ const Navigation = (): JSX.Element => {
   const path = usePathname();
 
   return (
-    <div className="h-[calc(100vh-20rem)] w-full">
+    <div className="flex h-[calc(100vh-21rem)] w-full">
       <ul className="flex w-full flex-col items-center divide-y divide-dashed divide-[#1c1c1c]">
         {NavigationItems.map((link) => (
           <li

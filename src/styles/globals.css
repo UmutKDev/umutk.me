@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply flex flex-row;
+  @apply bg-[#060606];
+  @apply text-white;
+  @apply h-screen;
+  @apply w-full;
+}
+
+ul li.links {
+  @apply w-full p-4 text-center hover:bg-white/10;
+  @apply transition-all duration-150 ease-in-out;
+}
+
+ul li.links a {
+  @apply group-hover:bg-white/10;
+  @apply text-sm;
+}

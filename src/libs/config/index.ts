@@ -1,3 +1,4 @@
 import { Navigation } from "./Navigation";
+import { NEXT_SEO_DEFAULT } from "./Seo";
 
-export { Navigation };
+export { Navigation, NEXT_SEO_DEFAULT };

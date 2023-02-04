@@ -1,4 +1,5 @@
-import "./globals.css";
+import "src/styles/globals.css";
+import Sidebar from "src/components/layouts/Sidebar";
 import { Poppins } from "@next/font/google";
 
 const poppins = Poppins({
@@ -6,6 +7,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",
 });
+
 export default function RootLayout({
   children,
 }: {
@@ -13,12 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <Sidebar />
+        <main className="w-[calc(100vw-15rem)]">{children}</main>
+      </body>
     </html>
   );
 }

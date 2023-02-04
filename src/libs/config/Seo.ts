@@ -1,7 +1,7 @@
 import type { NextSeoProps } from "next-seo";
 
 export const NEXT_SEO_DEFAULT: NextSeoProps = {
-  titleTemplate: "%s | Umut Kızıloğlu",
+  titleTemplate: "%s • Umut Kızıloğlu",
   description: "Description A",
   openGraph: {
     type: "website",

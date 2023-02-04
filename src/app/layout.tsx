@@ -18,7 +18,7 @@ export default function RootLayout({
       <head />
       <body className={poppins.className}>
         <Sidebar />
-        <main className="w-[calc(100vw-15rem)]">{children}</main>
+        <main className="w-[calc(100vw-15rem)] py-12 px-8">{children}</main>
       </body>
     </html>
   );

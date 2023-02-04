@@ -1,5 +1,11 @@
+import Main from "@/components/layouts/Main";
+
 const Contact = (): JSX.Element => {
-  return <p>Contact</p>;
+  return (
+    <Main title="Contact">
+      <p>Zbab</p>
+    </Main>
+  );
 };
 
 export default Contact;

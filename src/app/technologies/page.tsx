@@ -1,5 +1,11 @@
+import Main from "@/components/layouts/Main";
+
 const Technologies = (): JSX.Element => {
-  return <p>Technologies</p>;
+  return (
+    <Main title="Technologies">
+      <p>Zbab</p>
+    </Main>
+  );
 };
 
 export default Technologies;

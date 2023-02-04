@@ -1,11 +1,11 @@
-import React from "react";
+import Main from "@/components/layouts/Main";
 
-const Home = () => {
+const About = (): JSX.Element => {
   return (
-    <>
-      <p>About Me</p>
-    </>
+    <Main title="About">
+      <p>Zbab</p>
+    </Main>
   );
 };
 
-export default Home;
+export default About;

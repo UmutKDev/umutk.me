@@ -5,17 +5,16 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard-with-typescript'
+    'standard-with-typescript',
+    'next/core-web-vitals',
+    'next',
+    'prettier'
   ],
-  overrides: [
-  ],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: [
-    'react'
-  ],
-  rules: {
-  }
+  plugins: ['react'],
+  rules: {}
 }

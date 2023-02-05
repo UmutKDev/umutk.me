@@ -17,5 +17,5 @@ ul li.links {
 
 ul li.links a {
   @apply group-hover:bg-white/10;
-  @apply text-sm;
+  @apply text-base;
 }

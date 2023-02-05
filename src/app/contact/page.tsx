@@ -1,3 +1,5 @@
+"use client";
+
 import Main from "@/components/layouts/Main";
 
 const Contact = (): JSX.Element => {

@@ -15,7 +15,7 @@ const Navigation = (): JSX.Element => {
   }, [pathname]);
 
   return (
-    <div className="relative flex h-[calc(100vh-21rem)] w-full">
+    <div className="relative flex h-[calc(100vh-26.5rem)] w-full">
       <ul className="flex w-full flex-col items-center divide-y divide-dashed divide-[#1c1c1c]">
         {NavigationItems.map((link) => (
           <li

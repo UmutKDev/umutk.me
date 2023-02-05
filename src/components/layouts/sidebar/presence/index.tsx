@@ -1,7 +1,7 @@
 const Presence = (): JSX.Element => {
   return (
     <div className="h-26 border-t border-[#1C1C1C]">
-      <h5 className="m-2 mb-3 text-[13px] font-medium text-white/80">
+      <h5 className="m-2 my-3 text-[13px] font-medium text-white/80">
         Doing Something
       </h5>
       <div className="flex items-center space-x-4 px-2">

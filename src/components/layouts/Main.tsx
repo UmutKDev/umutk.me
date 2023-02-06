@@ -6,10 +6,12 @@ const Main = ({
   title: string;
 }) => {
   return (
-    <>
-      <h1 className="text-3xl">{title}</h1>
+    <section>
+      <h1 className="text-3xl font-semibold underline decoration-sky-500/80 decoration-2 underline-offset-4">
+        {title}
+      </h1>
       {children}
-    </>
+    </section>
   );
 };
 

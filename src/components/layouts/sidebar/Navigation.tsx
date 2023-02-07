@@ -72,7 +72,7 @@ const Navigation = (): JSX.Element => {
           <li
             ref={dragConstraintsRef}
             key={link.name}
-            className={`links border-green-400 last:!border-b`}
+            className={`links last:!border-b`}
           >
             <Link href={link.path}>{link.name}</Link>
           </li>

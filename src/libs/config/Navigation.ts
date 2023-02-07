@@ -5,8 +5,8 @@ export const Navigation = [
     icon: "info",
   },
   {
-    name: "Technologies",
-    path: "/technologies",
+    name: "Skills",
+    path: "/skills",
     icon: "code",
   },
   {

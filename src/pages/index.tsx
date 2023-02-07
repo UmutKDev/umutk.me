@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <NextSeo {...NEXT_SEO_DEFAULT} title="About" />
       <Main title="About">
-        <div className="mt-4 text-base font-light text-white/90">
+        <div className="text-base font-light text-white/90">
           Hello, {"I'm"}
           <span className="font-semibold">
             {" "}

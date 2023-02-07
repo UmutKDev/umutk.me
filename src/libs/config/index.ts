@@ -1,6 +1,7 @@
 import { About } from "./About";
+import { Projects } from "./Projects";
 import { Navigation } from "./Navigation";
-import { NEXT_SEO_DEFAULT } from "./Seo";
 import { Connections } from "./Connections";
+import { NEXT_SEO_DEFAULT } from "./Seo";
 
-export { About, Navigation, Connections, NEXT_SEO_DEFAULT };
+export { About, Projects, Navigation, Connections, NEXT_SEO_DEFAULT };

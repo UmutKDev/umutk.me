@@ -1,7 +1,7 @@
-import Avatar from "src/components/layouts/sidebar/avatar";
-import Connections from "./sidebar/connections";
-import Navigation from "./sidebar/Navigation";
-import Presence from "./sidebar/presence";
+import Avatar from "./Avatar";
+import Connections from "./Connections";
+import Navigation from "./Navigation";
+import Presence from "./Presence";
 
 const Sidebar = ({ className }: any): JSX.Element => {
   return (

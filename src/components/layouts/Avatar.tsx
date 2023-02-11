@@ -1,6 +1,6 @@
-import Name from "./Name";
-import Job from "./Job";
-import Image from "./Image";
+import Name from "./AvatarName";
+import Job from "./AvatarJob";
+import Image from "./AvatarImage";
 
 const Avatar = (): JSX.Element => {
   return (

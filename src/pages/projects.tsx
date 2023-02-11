@@ -1,9 +1,9 @@
 import Main from "@/components/layouts/Main";
+import Link from "next/link";
 import { NextSeo } from "next-seo";
 import { Projects as ProjectsItems, NEXT_SEO_DEFAULT } from "@/libs/config";
-import Link from "next/link";
 
-export default function Projects() {
+export default function Projects(): JSX.Element {
   return (
     <>
       <NextSeo {...NEXT_SEO_DEFAULT} title="Projects" />

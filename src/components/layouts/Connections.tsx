@@ -12,7 +12,7 @@ const Connections = (): JSX.Element => {
               rel="noreferrer"
               className="flex h-8 w-8 items-center justify-center rounded-full"
             >
-              <connection.icon className="h-5 w-5  text-white/80 transition-colors duration-100 ease-in-out hover:text-white" />
+              <connection.icon className="h-5 w-5 fill-white/80 transition-colors duration-100 ease-in-out hover:fill-white" />
             </a>
           </li>
         ))}

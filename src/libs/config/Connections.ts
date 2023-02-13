@@ -1,31 +1,37 @@
-import { FiGithub, FiLinkedin, FiInstagram, FiTwitter } from "react-icons/fi";
-import { BsDiscord } from "react-icons/bs";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaDiscord,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
+import { AiFillInstagram } from "react-icons/ai";
 
 export const Connections = [
   {
     name: "Linkedin",
-    icon: FiLinkedin,
+    icon: FaLinkedin,
     to: "https://www.linkedin.com/in/umutkdev",
   },
   {
     name: "Github",
-    icon: FiGithub,
+    icon: FaGithub,
     to: "https://github.com/UmutKDev",
   },
   {
     name: "Discord",
-    icon: BsDiscord,
+    icon: FaDiscord,
     to: "https://discord.gg/Pgg2v8Ughv",
   },
   {
     name: "Instagram",
-    icon: FiInstagram,
+    icon: AiFillInstagram,
     color: "pink",
     to: "https://instagram.com/umutk.js",
   },
   {
     name: "Twitter",
-    icon: FiTwitter,
+    icon: FaTwitter,
     color: "cyan",
     to: "https://twitter.com/umutkdev",
   },

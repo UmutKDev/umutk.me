@@ -26,25 +26,12 @@ export default function App({ Component, pageProps }: AppProps) {
     setTimeout(() => setIsIntro(false), 1500);
   }, []);
 
-  return isIntro ? (
-    <>
-      <NextSeo {...NEXT_SEO_DEFAULT} defaultTitle={"Umut Kızıloğlu"} />
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={router.route}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 2 }}
-          transition={{ duration: 0.85 }}
-        >
-          <Intro setIsIntro={setIsIntro} />
-        </motion.div>
-      </AnimatePresence>
-    </>
-  ) : (
+  return (
     <>
       {isWinter && <Snowfall snowflakeCount={20} speed={[0.5, 1]} />}
       <Sidebar className={poppins.className} />
       <AnimatePresence mode="wait">
+      {isIntro && <Intro setIsIntro={setIsIntro} />}
         <motion.div
           key={router.route}
           initial={{ opacity: 0 }}

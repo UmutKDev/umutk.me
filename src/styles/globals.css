@@ -19,3 +19,7 @@ ul li.links a {
   @apply group-hover:bg-white/10;
   @apply text-base;
 }
+
+.important {
+  @apply font-medium underline decoration-white/80 decoration-2 underline-offset-4;
+}

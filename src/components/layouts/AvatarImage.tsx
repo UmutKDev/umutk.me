@@ -1,22 +1,21 @@
 import Image from "next/image";
+import UmutKImage from "public/images/umutk.jpg";
 
 const AvatarImage = (): JSX.Element => {
   return (
     <figure className="relative">
       <Image
-        src="/images/umutk.jpg"
-        className="lef-0 absolute top-0 bottom-0 right-0 z-0 rounded blur-lg"
-        width={96}
-        height={96}
+        src={UmutKImage}
+        loading="eager"
+        className="lef-0 absolute top-0 bottom-0 right-0 z-0 h-24 w-24 rounded blur-lg"
         draggable={false}
         alt="Avatar"
       />
       <Image
-        src="/images/umutk.jpg"
-        className="sticky rounded"
+        loading="eager"
+        src={UmutKImage}
+        className="sticky h-24 w-24 rounded"
         draggable={false}
-        width={96}
-        height={96}
         alt="Avatar"
       />
 

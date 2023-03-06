@@ -1,4 +1,4 @@
-import Main from "@/components/layouts/Main";
+import Main from "@/layouts/Main";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
 import { Poppins, Courier_Prime } from "@next/font/google";
@@ -26,11 +26,16 @@ export default function Projects(): JSX.Element {
                   </div>
                   <div className="col-span-2 flex flex-col items-start justify-center border-r border-[#1C1C1C] pl-5">
                     <p className={curriorPrime.className}>language</p>
-                    <p className="font-light text-white/80 flex items-center">typescript <div className="ml-3 w-3 h-3 rounded-full bg-blue-800"></div> </p>
+                    <p className="flex items-center font-light text-white/80">
+                      typescript{" "}
+                      <div className="ml-3 h-3 w-3 rounded-full bg-blue-800"></div>{" "}
+                    </p>
                   </div>
                   <div className="col-span-8 flex flex-col items-start justify-center pl-5">
                     <p className={curriorPrime.className}>description</p>
-                    <p className="font-light text-white/80">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p className="font-light text-white/80">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
                   </div>
                 </li>
               </Link>

@@ -3,6 +3,7 @@ import { NextSeo } from "next-seo";
 import { Skills as SkillsStacks, NEXT_SEO_DEFAULT } from "@/libs/config";
 import SVG from "react-inlinesvg";
 import { Courier_Prime } from "@next/font/google";
+import Image from "next/image";
 
 const curriorPrime = Courier_Prime({
   weight: ["400", "700"],
@@ -22,7 +23,12 @@ export default function Skills() {
                 className="grid h-28 w-full grid-cols-12 rounded-md border border-[#1C1C1C] bg-transparent transition-all duration-200 ease-in-out hover:bg-white/10"
               >
                 <div className="col-span-1 flex w-full flex-col items-center justify-center border-r border-[#1C1C1C]">
-                  <SVG src={stack.icon} className="!h-24 !w-24" />
+                  <Image
+                    src={stack.icon}
+                    width={80}
+                    height={80}
+                    alt={"Skill Icon"}
+                  />
                 </div>
                 <div className="col-span-2 flex flex-col items-start justify-center border-r border-[#1C1C1C] pl-5">
                   <p className={curriorPrime.className}>name</p>

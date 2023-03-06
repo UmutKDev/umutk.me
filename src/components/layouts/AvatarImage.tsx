@@ -1,16 +1,22 @@
-const Image = (): JSX.Element => {
+import Image from "next/image";
+
+const AvatarImage = (): JSX.Element => {
   return (
     <figure className="relative">
-      <img
-        src="images/umutk.jpg"
-        className="lef-0 absolute top-0 bottom-0 right-0 z-0 h-24 w-24 rounded blur-lg"
+      <Image
+        src="/images/umutk.jpg"
+        className="lef-0 absolute top-0 bottom-0 right-0 z-0 rounded blur-lg"
+        width={96}
+        height={96}
         draggable={false}
         alt="Avatar"
       />
-      <img
-        src="images/umutk.jpg"
-        className="sticky w-24 rounded"
+      <Image
+        src="/images/umutk.jpg"
+        className="sticky rounded"
         draggable={false}
+        width={96}
+        height={96}
         alt="Avatar"
       />
 
@@ -19,4 +25,4 @@ const Image = (): JSX.Element => {
   );
 };
 
-export default Image;
+export default AvatarImage;

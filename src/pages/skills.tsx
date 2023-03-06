@@ -15,40 +15,40 @@ export default function Skills() {
     <>
       <NextSeo {...NEXT_SEO_DEFAULT} title="Skills" />
       <Main title="Skills">
-        <div className="w-full">
-          <ul className="flex h-[calc(100vh-9.5rem)] flex-col gap-y-4 overflow-auto rounded-md ">
-            {SkillsStacks.map((stack, i) => (
-              <li
-                key={i}
-                className="grid h-28 w-full grid-cols-12 rounded-md border border-[#1C1C1C] bg-transparent transition-all duration-200 ease-in-out hover:bg-white/10"
-              >
-                <div className="col-span-1 flex w-full flex-col items-center justify-center border-r border-[#1C1C1C]">
-                  <Image
-                    src={stack.icon}
-                    width={80}
-                    height={80}
-                    alt={"Skill Icon"}
-                  />
-                </div>
-                <div className="col-span-2 flex flex-col items-start justify-center border-r border-[#1C1C1C] pl-5">
-                  <p className={curriorPrime.className}>name</p>
-                  <p className="font-light text-white/80">{stack.name}</p>
-                </div>
-                <div className="col-span-3 flex flex-col items-start justify-center border-r border-[#1C1C1C] pl-5">
-                  <p className={curriorPrime.className}>type</p>
-                  <p className="flex items-center font-light text-white/80">
-                    {stack.type}
-                  </p>
-                </div>
-                <div className="col-span-6 flex flex-col items-start justify-center pl-5">
-                  <p className={curriorPrime.className}>use case</p>
-                  <p className="font-light text-white/80">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
+        <p className="text-white/80">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+        <div className="mt-3 grid w-screen gap-y-4 overflow-auto lg:h-[calc(100vh-11.5rem)] lg:w-full lg:pr-4">
+          {SkillsStacks.map((stack, i) => (
+            <div
+              key={i}
+              className="flex h-auto w-full flex-col rounded-xl border border-[#1C1C1C] lg:h-24 lg:flex-row"
+            >
+              <div className="flex items-center justify-center rounded-l bg-white lg:w-24">
+                <Image
+                  draggable={false}
+                  src={stack.icon}
+                  width={96}
+                  height={96}
+                  alt={"Skill Icon"}
+                />
+              </div>
+              <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5 lg:w-32 lg:border-r lg:border-t-0">
+                <h5 className={curriorPrime.className}>name</h5>
+                <p className="text-sm text-white/80">{stack.name}</p>
+              </div>
+              <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5 lg:w-60 lg:border-t-0 lg:border-r">
+                <h5 className={curriorPrime.className}>type</h5>
+                <p className="text-sm text-white/80">{stack.type}</p>
+              </div>
+              <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5  lg:border-t-0">
+                <h5 className={curriorPrime.className}>use case</h5>
+                <p className="text-sm text-white/80">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </Main>
     </>

@@ -23,3 +23,28 @@ ul li.links a {
 .important {
   @apply font-medium underline decoration-white/80 decoration-1 underline-offset-4;
 }
+
+
+/* CSS code for mixin scrollbars */
+
+/* For Google Chrome */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #b0b3b8;
+  }
+  
+  ::-webkit-scrollbar-track {
+  background: #515253;
+  }
+  
+  /* For Internet Explorer */
+  
+  * {
+  scrollbar-face-color: #b0b3b8;
+  scrollbar-track-color: #515253;
+  }

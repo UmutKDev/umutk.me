@@ -11,6 +11,7 @@ const Connections = (): JSX.Element => {
               target="_blank"
               rel="noreferrer"
               className="flex h-8 w-8 items-center justify-center rounded-full"
+              aria-label="Connection"
             >
               <connection.icon className="h-5 w-5 fill-white/80 transition-colors duration-100 ease-in-out hover:fill-white" />
             </a>

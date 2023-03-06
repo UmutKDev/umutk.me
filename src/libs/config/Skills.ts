@@ -13,7 +13,7 @@ import {
 
 export const Skills = [
   {
-    name: "Visual Studio Code",
+    name: "VS Code",
     icon: VisualStudioCodeIcon.src,
     type: "Editor",
   },

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Avatar from "./Avatar";
-import Connections from "./Connections";
-import Navigation from "./Navigation";
-import Presence from "./Presence";
+import Avatar from "@/components/Avatar";
+import Connections from "@/components/Connections";
+import Navigation from "@/components/Navigation";
+import Presence from "@/components/Presence";
 
 const Sidebar = ({ className }: any): JSX.Element => {
   const [isActivity, setIsActivity] = useState(false);

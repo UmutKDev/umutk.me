@@ -7,13 +7,15 @@ const AvatarImage = (): JSX.Element => {
       <Image
         src={UmutKImage}
         loading="eager"
+        priority={true}
         className="lef-0 absolute top-0 bottom-0 right-0 z-0 h-24 w-24 rounded blur-lg"
         draggable={false}
         alt="Avatar"
       />
       <Image
-        loading="eager"
         src={UmutKImage}
+        loading="eager"
+        priority={true}
         className="sticky h-24 w-24 rounded"
         draggable={false}
         alt="Avatar"

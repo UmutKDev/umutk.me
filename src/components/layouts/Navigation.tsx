@@ -5,7 +5,7 @@ import { Navigation as NavigationItems } from "@/libs/config";
 import useSound from "use-sound";
 import { motion, PanInfo } from "framer-motion";
 
-const Navigation = (): JSX.Element => {
+const Navigation = ({ isActivityTrue }): JSX.Element => {
   const pathname = usePathname();
   const history = useRouter();
 
@@ -57,8 +57,16 @@ const Navigation = (): JSX.Element => {
     [pageIndicatorOffset, pathnameOffsets, pathname, dragYOffset, history]
   );
 
+  const checkIfActivityTrue = useCallback(() => {
+    if (isActivityTrue) {
+      return "h-[calc(100vh-26.5em)]";
+    } else {
+      return "h-[calc(100vh-20.5rem)]";
+    }
+  }, [isActivityTrue]);
+
   return (
-    <div className="relative flex h-[calc(100vh-26.5rem)] w-full">
+    <div className={`relative flex w-full ${checkIfActivityTrue()}`}>
       <motion.div
         whileHover={{ width: 3 }}
         drag="y"

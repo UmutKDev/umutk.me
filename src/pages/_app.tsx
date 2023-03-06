@@ -5,7 +5,7 @@ import "@/styles/globals.css";
 import { Poppins } from "@next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "@/layouts/Sidebar";
-import Intro from "@/layouts/Intro";
+// import Intro from "@/layouts/Intro";
 import Snowfall from "react-snowfall";
 import { NEXT_SEO_DEFAULT } from "@/libs/config";
 import { NextSeo } from "next-seo";

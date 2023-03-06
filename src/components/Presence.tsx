@@ -1,19 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
-import {
-  LanyardData,
-  Activity,
-  Spotify,
-  Timestamps,
-} from "react-use-lanyard/dist";
+import { LanyardData, Activity, Spotify } from "react-use-lanyard/dist";
 import Image from "next/image";
 
 const Presence = ({ status }: { status: LanyardData }): JSX.Element => {
   const activity = status.activities.find(
     (activity) => activity.type == 0
   ) as Activity;
-
-  console.log(activity);
 
   return (
     <div className="h-26 border-t border-[#1C1C1C]">
@@ -39,7 +32,6 @@ const DiscordActivity = ({ activity }: { activity: any }): JSX.Element => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // fix possible undefined
       const start = activity.timestamps.start;
       const now = new Date().getTime();
       const elapsed = {

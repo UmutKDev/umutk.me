@@ -5,7 +5,7 @@ import { Navigation as NavigationItems } from "@/libs/config";
 import useSound from "use-sound";
 import { motion, PanInfo } from "framer-motion";
 
-const Navigation = ({ isActivityTrue }): JSX.Element => {
+const Navigation = ({ isActivityTrue }: React.PropsWithChildren<any>) => {
   const pathname = usePathname();
   const history = useRouter();
 

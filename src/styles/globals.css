@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-[#060606];
+}
+
 body #__next {
   @apply flex flex-row;
   @apply bg-[#060606];
   @apply text-white;
-  @apply h-screen;
+  @apply lg:h-screen;
   @apply w-full;
 }
 

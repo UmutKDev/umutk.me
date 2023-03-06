@@ -16,7 +16,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const isWinter = new Date().getMonth() >= 10 || new Date().getMonth() <= 2;
+const isWinter = false;
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
           transition={{ duration: 0.85 }}
         >
           <main
-            className={`${poppins.className} w-[calc(100vw-15rem)] py-12 px-8 `}
+            className={`${poppins.className} py-12 px-8 lg:w-[calc(100vw-15rem)] `}
           >
             <Component {...pageProps} />
           </main>

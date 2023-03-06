@@ -29,7 +29,9 @@ const Presence = ({ status }: { status: LanyardData }): JSX.Element => {
   );
 };
 
-const DiscordActivity = ({ activity }: { activity: Activity }): JSX.Element => {
+const DiscordActivity = ({ activity }: { activity: any }): JSX.Element => {
+  // fix possible bug
+
   const [elapsed, setElapsed] = useState({
     minutes: 0,
     seconds: 0,
@@ -37,15 +39,14 @@ const DiscordActivity = ({ activity }: { activity: Activity }): JSX.Element => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setElapsed({
-        minutes: Math.floor(
-          (new Date().getTime() - activity.timestamps.start) / 60000
-        ),
-        seconds:
-          Math.floor(
-            (new Date().getTime() - activity.timestamps.start) / 1000
-          ) % 60,
-      });
+      // fix possible undefined
+      const start = activity.timestamps.start;
+      const now = new Date().getTime();
+      const elapsed = {
+        minutes: Math.floor((now - start) / 1000 / 60),
+        seconds: Math.floor((now - start) / 1000) % 60,
+      };
+      setElapsed(elapsed);
     }, 1000);
     return () => clearInterval(interval);
   }, [activity.timestamps.start]);
@@ -110,7 +111,7 @@ const DiscordActivity = ({ activity }: { activity: Activity }): JSX.Element => {
 };
 
 const SpotifyActivity = ({ spotify }: { spotify: Spotify }): JSX.Element => {
-  console.log(spotify);
+  const progressBar = document.getElementById("#progressbar");
   const [progress, setProgress] = useState({
     start: 0,
     end: 0,
@@ -123,11 +124,11 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): JSX.Element => {
         end: new Date().getTime(),
       });
     }, 1000);
-    if (spotify.timestamps.start === 0) {
-      document.getElementById("#progressbar").style.width = "100%";
+    if (spotify.timestamps.start === 0 && progressBar) {
+      progressBar.style.width = "0%";
     }
     return () => clearInterval(interval);
-  }, [spotify.timestamps.start]);
+  }, [progressBar, spotify.timestamps.start]);
   return (
     <div className="flex items-center space-x-4 px-2">
       <div className="relative h-16 w-16">

@@ -1,4 +1,4 @@
-import { useLanyard } from "react-use-lanyard";
+import { useLanyard, LanyardData } from "react-use-lanyard";
 
 const Lanyard = () => {
   const { loading, status } = useLanyard({
@@ -8,7 +8,7 @@ const Lanyard = () => {
 
   return {
     loading,
-    status,
+    status: status as LanyardData,
   };
 };
 

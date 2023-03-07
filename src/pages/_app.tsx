@@ -5,7 +5,7 @@ import "@/styles/globals.css";
 import { Poppins } from "@next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "@/layouts/Sidebar";
-// import Intro from "@/layouts/Intro";
+import Intro from "@/layouts/Intro";
 import Snowfall from "react-snowfall";
 import { NEXT_SEO_DEFAULT } from "@/libs/config";
 import { NextSeo } from "next-seo";
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isIntro, setIsIntro] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setIsIntro(false), 1500);
+    setTimeout(() => setIsIntro(false), 2000);
   }, []);
 
   // return isIntro ? (
@@ -43,6 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
   // ) : (
   return (
     <>
+      {isIntro && <Intro />}
       {/* {isWinter && <Snowfall snowflakeCount={20} speed={[0.5, 1]} />} */}
       <Sidebar className={poppins.className} />
       <AnimatePresence mode="wait">

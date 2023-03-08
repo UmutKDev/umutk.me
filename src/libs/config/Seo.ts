@@ -1,29 +1,31 @@
 import type { NextSeoProps } from "next-seo";
+import { About } from "./";
+
+const {
+  name: { firstname, lastname },
+} = About;
 
 export const NEXT_SEO_DEFAULT: NextSeoProps = {
-  titleTemplate: "%s • Umut Kızıloğlu",
-  description: "Description A",
+  titleTemplate: `%s • ${firstname} ${lastname}`,
+  defaultTitle: `${firstname} ${lastname}`,
+  description: `${firstname} ${lastname} Full Stack Developer`,
   openGraph: {
     type: "website",
     locale: "en_IE",
-    url: "https://www.url.ie/a",
-    title: "Open Graph Title A",
-    description: "Open Graph Description A",
+    url: "https://umutk.me/",
+    title: `${firstname} ${lastname}`,
+    description: `${firstname} ${lastname} Full Stack Developer`,
     images: [
       {
-        url: "https://www.test.ie/og-image-a-01.jpg",
-        width: 800,
-        height: 600,
-        alt: "Og Image Alt A",
+        url: "https://umutk.me/images/umutk.jpg",
+        alt: `${firstname} ${lastname} Full Stack Developer`,
         type: "image/jpeg",
-        secureUrl: "https://www.test.ie/secure-og-image-a-01.jpg",
       },
     ],
-    siteName: "SiteName A",
+    siteName: "Umut K.",
   },
   twitter: {
-    handle: "@handlea",
-    site: "@sitea",
-    cardType: "summary_large_image",
+    handle: "@umutkdev",
+    site: "@umutkdev",
   },
 };

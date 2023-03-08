@@ -18,7 +18,7 @@ export const NEXT_SEO_DEFAULT: NextSeoProps = {
     images: [
       {
         url: "/images/umutk.jpg",
-        alt: `${firstname} ${lastname} Full Stack Developer`,
+        alt: `${firstname} ${lastname}: Full Stack Developer`,
         type: "image/jpeg",
       },
     ],

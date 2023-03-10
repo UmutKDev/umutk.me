@@ -1,4 +1,4 @@
-import Main from "@/layouts/Main";
+import Main from "@/layouts/Content";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
 import { Courier_Prime } from "@next/font/google";
@@ -18,31 +18,30 @@ const Projects = () => {
         <p className="text-white/80">
           These are the projects I have worked on.
         </p>
-        <div className="mt-3 grid w-screen gap-y-6 lg:h-[calc(100vh-11.5rem)] overflow-auto lg:w-full lg:pr-4">
+        <div className="mt-3 grid w-full gap-y-6 overflow-auto lg:h-[calc(100vh-11.5rem)] lg:w-full lg:pr-4">
           {ProjectsItems.map((project, i) => (
             <a
               href={project.link}
               key={i}
-              className="flex h-auto w-full flex-col rounded-xl border border-[#1C1C1C] lg:h-24 lg:flex-row hover:bg-[#1C1C1C] transition-colors duration-150 ease-in-out"
+              className="flex h-auto w-full flex-col rounded-xl border border-[#1C1C1C] transition-colors duration-150 ease-in-out hover:bg-[#1C1C1C] lg:h-24 lg:flex-row"
             >
-
               <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5 lg:w-32 lg:border-r lg:border-t-0">
                 <h5 className={curriorPrime.className}>name</h5>
                 <p className="text-sm text-white/80">{project.name}</p>
               </div>
               <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5 lg:w-60 lg:border-t-0 lg:border-r">
                 <h5 className={curriorPrime.className}>language</h5>
-                <p className="text-sm text-white/80 flex items-center">{project.language}
-                  <span className="ml-3 h-3 w-3 rounded-full"
+                <p className="flex items-center text-sm text-white/80">
+                  {project.language}
+                  <span
+                    className="ml-3 h-3 w-3 rounded-full"
                     style={{ backgroundColor: project.color }}
                   ></span>{" "}
                 </p>
               </div>
               <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5 lg:border-t-0">
                 <h5 className={curriorPrime.className}>Description</h5>
-                <p className="text-sm text-white/80">
-                  {project.description}
-                </p>
+                <p className="text-sm text-white/80">{project.description}</p>
               </div>
             </a>
           ))}
@@ -50,6 +49,6 @@ const Projects = () => {
       </Main>
     </>
   );
-}
+};
 
 export default Projects;

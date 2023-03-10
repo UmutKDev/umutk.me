@@ -1,4 +1,4 @@
-import Main from "@/layouts/Main";
+import Main from "@/layouts/Content";
 import { NextSeo, BreadcrumbJsonLd } from "next-seo";
 import { About, NEXT_SEO_DEFAULT, BREADCRUMB_JSON_LD } from "@/libs/config";
 

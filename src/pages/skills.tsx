@@ -1,4 +1,4 @@
-import Main from "@/layouts/Main";
+import Main from "@/layouts/Content";
 import { NextSeo } from "next-seo";
 import { Skills as SkillsStacks, NEXT_SEO_DEFAULT } from "@/libs/config";
 import SVG from "react-inlinesvg";
@@ -19,7 +19,7 @@ const Skills = () => {
         <p className="text-white/80">
           These are the skills I have learned and used in my projects.
         </p>
-        <div className="mt-3 grid w-screen gap-y-4 overflow-auto lg:h-[calc(100vh-11.5rem)] lg:w-full lg:pr-4">
+        <div className="mt-3 grid w-full gap-y-4 overflow-auto lg:h-[calc(100vh-11.5rem)] lg:w-full lg:pr-4">
           {SkillsStacks.map((stack, i) => (
             <div
               key={i}
@@ -44,9 +44,7 @@ const Skills = () => {
               </div>
               <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5  lg:border-t-0">
                 <h5 className={curriorPrime.className}>use case</h5>
-                <p className="text-sm text-white/80">
-                  It will be added soon.
-                </p>
+                <p className="text-sm text-white/80">It will be added soon.</p>
               </div>
             </div>
           ))}
@@ -54,6 +52,6 @@ const Skills = () => {
       </Main>
     </>
   );
-}
+};
 
 export default Skills;

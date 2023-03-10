@@ -18,7 +18,7 @@ const Projects = () => {
         <p className="text-white/80">
           These are the projects I have worked on.
         </p>
-        <div className="mt-3 grid w-screen gap-y-6 overflow-auto lg:w-full lg:pr-4">
+        <div className="mt-3 grid w-screen gap-y-6 lg:h-[calc(100vh-11.5rem)] overflow-auto lg:w-full lg:pr-4">
           {ProjectsItems.map((project, i) => (
             <a
               href={project.link}

@@ -20,8 +20,6 @@ const AvatarImage = (): JSX.Element => {
         draggable={false}
         alt="Avatar"
       />
-
-      <div className="absolute -bottom-1 -right-1 h-4 w-4 rounded-md bg-green-500"></div>
     </figure>
   );
 };

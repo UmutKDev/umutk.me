@@ -14,9 +14,4 @@ export const Navigation = [
     path: "/projects",
     icon: "folder",
   },
-  {
-    name: "Contact",
-    path: "/contact",
-    icon: "mail",
-  },
 ];

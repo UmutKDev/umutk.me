@@ -41,15 +41,5 @@ export const BREADCRUMB_JSON_LD: BreadCrumbJsonLdProps = {
       name: "Projects",
       item: "https://www.umutk.me/projects",
     },
-    {
-      position: 3,
-      name: "Blog",
-      item: "https://www.umutk.me/blog",
-    },
-    {
-      position: 4,
-      name: "Contact",
-      item: "https://www.umutk.me/contact",
-    },
   ],
 };

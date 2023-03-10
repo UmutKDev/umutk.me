@@ -1,7 +1,7 @@
 import Main from "@/layouts/Main";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
-import { Poppins, Courier_Prime } from "@next/font/google";
+import { Courier_Prime } from "@next/font/google";
 import { Projects as ProjectsItems, NEXT_SEO_DEFAULT } from "@/libs/config";
 
 const curriorPrime = Courier_Prime({
@@ -10,7 +10,7 @@ const curriorPrime = Courier_Prime({
   display: "swap",
 });
 
-export default function Projects(): JSX.Element {
+const Projects = () => {
   return (
     <>
       <NextSeo {...NEXT_SEO_DEFAULT} title="Projects" />
@@ -54,3 +54,5 @@ export default function Projects(): JSX.Element {
     </>
   );
 }
+
+export default Projects;

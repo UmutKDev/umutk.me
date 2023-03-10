@@ -10,7 +10,8 @@ const curriorPrime = Courier_Prime({
   subsets: ["latin"],
   display: "swap",
 });
-export default function Skills() {
+
+const Skills = () => {
   return (
     <>
       <NextSeo {...NEXT_SEO_DEFAULT} title="Skills" />
@@ -54,3 +55,5 @@ export default function Skills() {
     </>
   );
 }
+
+export default Skills;

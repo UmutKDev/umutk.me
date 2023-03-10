@@ -2,7 +2,7 @@ import Main from "@/layouts/Main";
 import { NextSeo } from "next-seo";
 import { About, NEXT_SEO_DEFAULT } from "@/libs/config";
 
-export default function Home() {
+const Home = () => {
   const {
     name: { firstname, lastname },
     biography: {
@@ -76,3 +76,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

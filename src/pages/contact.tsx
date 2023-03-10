@@ -2,7 +2,7 @@ import Main from "@/layouts/Main";
 import { NextSeo } from "next-seo";
 import { NEXT_SEO_DEFAULT } from "@/libs/config";
 
-export default function Contact() {
+const Contact = () => {
   return (
     <>
       <NextSeo {...NEXT_SEO_DEFAULT} title="Contact" />
@@ -12,3 +12,5 @@ export default function Contact() {
     </>
   );
 }
+
+export default Contact;

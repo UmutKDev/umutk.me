@@ -1,6 +1,6 @@
 import Main from "@/layouts/Main";
-import { NextSeo } from "next-seo";
-import { About, NEXT_SEO_DEFAULT } from "@/libs/config";
+import { NextSeo, BreadcrumbJsonLd } from "next-seo";
+import { About, NEXT_SEO_DEFAULT, BREADCRUMB_JSON_LD } from "@/libs/config";
 
 const Home = () => {
   const {
@@ -29,6 +29,7 @@ const Home = () => {
   return (
     <>
       <NextSeo {...NEXT_SEO_DEFAULT} title="About" />
+      <BreadcrumbJsonLd {...BREADCRUMB_JSON_LD} />
       <Main title="About">
         <div className="prose text-white/75">
           <p>

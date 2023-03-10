@@ -15,41 +15,38 @@ const Projects = () => {
     <>
       <NextSeo {...NEXT_SEO_DEFAULT} title="Projects" />
       <Main title="Projects">
-        <div className="w-full">
-          <ul className="flex flex-col gap-y-4">
-            {ProjectsItems.map((project, i) => (
-              <Link href="#" key={i}>
-                <li className="grid h-24 w-full grid-cols-12 rounded-md border border-[#1C1C1C] bg-transparent transition-all duration-200 ease-in-out hover:bg-white/10">
-                  <div className="col-span-2 flex flex-col items-start justify-center border-r border-[#1C1C1C] pl-5">
-                    <p className={curriorPrime.className}>name</p>
-                    <p className="font-light text-white/80">umutk.me</p>
-                  </div>
-                  <div className="col-span-2 flex flex-col items-start justify-center border-r border-[#1C1C1C] pl-5">
-                    <p className={curriorPrime.className}>language</p>
-                    <p className="flex items-center font-light text-white/80">
-                      typescript{" "}
-                      <div className="ml-3 h-3 w-3 rounded-full bg-blue-800"></div>{" "}
-                    </p>
-                  </div>
-                  <div className="col-span-8 flex flex-col items-start justify-center pl-5">
-                    <p className={curriorPrime.className}>description</p>
-                    <p className="font-light text-white/80">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </p>
-                  </div>
-                </li>
-              </Link>
-            ))}
-          </ul>
-        </div>
+        <p className="text-white/80">
+          These are the projects I have worked on.
+        </p>
+        <div className="mt-3 grid w-screen gap-y-6 overflow-auto lg:w-full lg:pr-4">
+          {ProjectsItems.map((project, i) => (
+            <a
+              href={project.link}
+              key={i}
+              className="flex h-auto w-full flex-col rounded-xl border border-[#1C1C1C] lg:h-24 lg:flex-row hover:bg-[#1C1C1C] transition-colors duration-150 ease-in-out"
+            >
 
-        {/* <ul>
-          {ProjectsItems.map((project) => (
-            <li key={project.name}>
-              {project.name} - {project.description}
-            </li>
+              <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5 lg:w-32 lg:border-r lg:border-t-0">
+                <h5 className={curriorPrime.className}>name</h5>
+                <p className="text-sm text-white/80">{project.name}</p>
+              </div>
+              <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5 lg:w-60 lg:border-t-0 lg:border-r">
+                <h5 className={curriorPrime.className}>language</h5>
+                <p className="text-sm text-white/80 flex items-center">{project.language}
+                  <span className="ml-3 h-3 w-3 rounded-full"
+                    style={{ backgroundColor: project.color }}
+                  ></span>{" "}
+                </p>
+              </div>
+              <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5 lg:border-t-0">
+                <h5 className={curriorPrime.className}>Description</h5>
+                <p className="text-sm text-white/80">
+                  {project.description}
+                </p>
+              </div>
+            </a>
           ))}
-        </ul> */}
+        </div>
       </Main>
     </>
   );

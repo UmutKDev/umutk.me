@@ -17,7 +17,7 @@ const Skills = () => {
       <NextSeo {...NEXT_SEO_DEFAULT} title="Skills" />
       <Main title="Skills">
         <p className="text-white/80">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          These are the skills I have learned and used in my projects.
         </p>
         <div className="mt-3 grid w-screen gap-y-4 overflow-auto lg:h-[calc(100vh-11.5rem)] lg:w-full lg:pr-4">
           {SkillsStacks.map((stack, i) => (
@@ -45,7 +45,7 @@ const Skills = () => {
               <div className="flex flex-col justify-center border-t border-[#1C1C1C] p-4 pl-5  lg:border-t-0">
                 <h5 className={curriorPrime.className}>use case</h5>
                 <p className="text-sm text-white/80">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  It will be added soon.
                 </p>
               </div>
             </div>

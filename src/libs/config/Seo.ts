@@ -8,17 +8,17 @@ const {
 export const NEXT_SEO_DEFAULT: NextSeoProps = {
   titleTemplate: `%s • ${firstname} ${lastname}`,
   defaultTitle: `${firstname} ${lastname}`,
-  description: `${firstname} ${lastname}: Full Stack Developer`,
+  description: `Full Stack Developer`,
   openGraph: {
     type: "website",
     locale: "en_IE",
     url: "https://www.umutk.me/",
     title: `${firstname} ${lastname}`,
-    description: `${firstname} ${lastname}: Full Stack Developer`,
+    description: `Full Stack Developer`,
     images: [
       {
         url: "/images/umutk.jpg",
-        alt: `${firstname} ${lastname}: Full Stack Developer`,
+        alt: `Full Stack Developer`,
         type: "image/jpeg",
       },
     ],

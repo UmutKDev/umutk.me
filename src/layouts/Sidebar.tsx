@@ -1,12 +1,22 @@
-import { useState } from "react";
 import Avatar from "@/components/Avatar";
 import Connections from "@/components/Connections";
 import Navigation from "@/components/Navigation";
 import Presence from "@/components/Presence";
 import useLanyard from "@/libs/lanyard";
 import { RxCross2 } from "react-icons/rx";
+import { FaBars } from "react-icons/fa";
+import { Poppins } from "@next/font/google";
 
-const Sidebar = ({ className, openOnMobile, toggleMobileMenu }: any): JSX.Element => {
+const poppins = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+});
+const Sidebar = ({
+  className,
+  openOnMobile,
+  toggleMobileMenu,
+}: any): JSX.Element => {
   const { loading, status } = useLanyard();
 
   const checkIfActivityTrue = () => {
@@ -20,16 +30,26 @@ const Sidebar = ({ className, openOnMobile, toggleMobileMenu }: any): JSX.Elemen
     }
   };
 
-  return (
+  return openOnMobile ? (
+    <div className="absolute z-20 flex h-16 w-full items-center justify-between border-b border-[#1C1C1C] p-8 lg:hidden">
+      <p className="text-xl font-semibold text-white">Umut Kızıloğlu</p>
+      <FaBars className="text-xl text-white" onClick={toggleMobileMenu} />
+    </div>
+  ) : (
     <aside
-      className={`${className} absolute top-0 left-0 lg:static h-full w-full lg:w-60 bg-black border-r border-[#1C1C1C] lg:flex lg:flex-col`}
+      className={[
+        poppins.className,
+        className,
+        "absolute top-0 left-0 h-full w-full border-r border-[#1C1C1C] bg-black lg:static lg:flex lg:w-60 lg:flex-col",
+      ].join(" ")}
     >
       {!openOnMobile && (
-        <div className="flex items-center justify-between h-16 w-full lg:hidden z-20 p-8 border-b border-[#1C1C1C]">
-          <p className="text-xl font-semibold text-white">
-            Umut Kızıloğlu
-          </p>
-          <RxCross2 className="text-2xl text-white" onClick={toggleMobileMenu} />
+        <div className="z-20 flex h-16 w-full items-center justify-between border-b border-[#1C1C1C] p-8 lg:hidden">
+          <p className="text-xl font-semibold text-white">Umut Kızıloğlu</p>
+          <RxCross2
+            className="text-2xl text-white"
+            onClick={toggleMobileMenu}
+          />
         </div>
       )}
       <Avatar />

@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <>
-      <NextSeo {...NEXT_SEO_DEFAULT} title="About" />
+      <NextSeo {...NEXT_SEO_DEFAULT} />
       <BreadcrumbJsonLd {...BREADCRUMB_JSON_LD} />
       <Main title="About">
         <div className="prose text-white/75">

@@ -22,6 +22,8 @@ const Projects = () => {
           {ProjectsItems.map((project, i) => (
             <a
               href={project.link}
+              target="_blank"
+              rel="noreferrer"
               key={i}
               className="flex h-auto w-full flex-col rounded-xl border border-[#1C1C1C] transition-colors duration-150 ease-in-out hover:bg-[#1C1C1C] lg:h-24 lg:flex-row"
             >

@@ -50,18 +50,18 @@ const DiscordActivity = ({ activity }: { activity: any }): JSX.Element => {
   const bigImage = activity.assets
     ? activity.assets.large_image.startsWith("mp:external")
       ? activity.assets.large_image.replace(
-          /mp:external\/([^\/]*)\/(http[s])/g,
-          "$2:/"
-        )
+        /mp:external\/([^\/]*)\/(http[s])/g,
+        "$2:/"
+      )
       : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.webp`
     : "/images/unknown.png";
 
   const smallImage = activity.assets
     ? activity.assets.small_image.startsWith("mp:external")
       ? activity.assets.small_image.replace(
-          /mp:external\/([^\/]*)\/(http[s])/g,
-          "$2:/"
-        )
+        /mp:external\/([^\/]*)\/(http[s])/g,
+        "$2:/"
+      )
       : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.small_image}.webp`
     : "";
 
@@ -133,21 +133,20 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): JSX.Element => {
           draggable={false}
         />
       </div>
-      <div className="flex h-16 w-36 flex-col justify-between">
+      <div className="flex h-16 w-[calc(100%-22%)] md:w-[calc(100%-12%)] lg:w-36 flex-col justify-between">
         <div className="flex flex-col gap-0.5">
           <h5 className="text-sm font-medium">{spotify.song}</h5>
-          <p className="text-xs text-white/80">By {spotify.artist}</p>
+          <p className="text-xs text-white/80">{spotify.artist}</p>
         </div>
         <div className="h-2 w-full rounded-full bg-[#181919]/70">
           <div
             id="progressbar"
             className="h-1.5 w-6 rounded-full bg-white"
             style={{
-              width: `${
-                ((progress.end - progress.start) /
-                  (spotify.timestamps.end - spotify.timestamps.start)) *
+              width: `${((progress.end - progress.start) /
+                (spotify.timestamps.end - spotify.timestamps.start)) *
                 100
-              }%`,
+                }%`,
             }}
           ></div>
         </div>

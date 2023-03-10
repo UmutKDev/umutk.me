@@ -59,9 +59,9 @@ const Navigation = ({ isActivityTrue }: React.PropsWithChildren<any>) => {
 
   const checkIfActivityTrue = useCallback(() => {
     if (isActivityTrue()) {
-      return "h-[calc(100vh-26.5em)]";
+      return "h-[calc(100vh-31em)] lg:h-[calc(100vh-26.5em)]";
     } else {
-      return "h-[calc(100vh-20.5rem)]";
+      return "h-[calc(100vh-26rem)] lg:h-[calc(100vh-20.5rem)]";
     }
   }, [isActivityTrue]);
 

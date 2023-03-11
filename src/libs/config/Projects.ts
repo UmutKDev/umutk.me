@@ -48,4 +48,11 @@ export const Projects = [
     color: "#2778ca",
     link: "https://github.com/UmutKDev/minecraft-skin-finder",
   },
+    {
+    name: "Electron Image Viewer",
+    description: "Electron Image Viewer With windows context menu",
+    language: "Javascript",
+    color: "#ecd932",
+    link: "electron-image-viewer",
+  },
 ];

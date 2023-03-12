@@ -60,6 +60,13 @@ export const Projects = [
     description: "Electron Image Viewer With windows context menu",
     language: "Javascript",
     color: "#ecd932",
-    link: "electron-image-viewer",
+    link: "https://github.com/UmutKDev/electron-image-viewer",
+  },
+    {
+    name: "Firebase Image Uploader",
+    description: "Firebase Image Upload with Next.js",
+    language: "Typescript",
+    color: "#2778ca",
+    link: "https://github.com/UmutKDev/firebase-image-upload",
   },
 ];

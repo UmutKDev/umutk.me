@@ -7,6 +7,13 @@ export const Projects = [
     color: "#2778ca",
   },
   {
+    name: "Umut K. Blog",
+    description: "Simple Blog Website With Next.js",
+    language: "Javascript",
+    link: "https://blog.umutk.me",
+    color: "#ecd932",
+  },
+  {
     name: "Auth App",
     description: "Nestjs JWT Passport Auth With React",
     language: "Typescript",
@@ -48,7 +55,7 @@ export const Projects = [
     color: "#2778ca",
     link: "https://github.com/UmutKDev/minecraft-skin-finder",
   },
-    {
+  {
     name: "Electron Image Viewer",
     description: "Electron Image Viewer With windows context menu",
     language: "Javascript",

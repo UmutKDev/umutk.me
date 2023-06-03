@@ -31,7 +31,12 @@ const Sidebar = ({
   };
 
   return openOnMobile ? (
-    <div className="absolute z-20 flex h-16 w-full items-center justify-between border-b border-[#1C1C1C] p-8 lg:hidden">
+    <div
+      className={[
+        poppins.className,
+        "absolute z-20 flex h-16 w-full items-center justify-between border-b border-[#1C1C1C] p-8 lg:hidden",
+      ].join(" ")}
+    >
       <p className="text-xl font-semibold text-white">Umut Kızıloğlu</p>
       <FaBars className="text-xl text-white" onClick={toggleMobileMenu} />
     </div>
@@ -40,7 +45,7 @@ const Sidebar = ({
       className={[
         poppins.className,
         className,
-        "absolute top-0 left-0 h-full w-full border-r border-[#1C1C1C] bg-black lg:static lg:flex lg:w-60 lg:flex-col",
+        "absolute left-0 top-0 h-full w-full border-r border-[#1C1C1C] bg-black lg:static lg:flex lg:w-60 lg:flex-col",
       ].join(" ")}
     >
       {!openOnMobile && (

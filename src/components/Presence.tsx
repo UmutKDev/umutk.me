@@ -23,8 +23,6 @@ const Presence = ({ status }: { status: LanyardData }): JSX.Element => {
 };
 
 const DiscordActivity = ({ activity }: { activity: any }): JSX.Element => {
-  // fix possible bug
-
   const [elapsed, setElapsed] = useState({
     minutes: 0,
     seconds: 0,
@@ -50,18 +48,18 @@ const DiscordActivity = ({ activity }: { activity: any }): JSX.Element => {
   const bigImage = activity.assets
     ? activity.assets.large_image.startsWith("mp:external")
       ? activity.assets.large_image.replace(
-        /mp:external\/([^\/]*)\/(http[s])/g,
-        "$2:/"
-      )
+          /mp:external\/([^\/]*)\/(http[s])/g,
+          "$2:/"
+        )
       : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.webp`
     : "/images/unknown.png";
 
   const smallImage = activity.assets
     ? activity.assets.small_image.startsWith("mp:external")
       ? activity.assets.small_image.replace(
-        /mp:external\/([^\/]*)\/(http[s])/g,
-        "$2:/"
-      )
+          /mp:external\/([^\/]*)\/(http[s])/g,
+          "$2:/"
+        )
       : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.small_image}.webp`
     : "";
 
@@ -93,9 +91,18 @@ const DiscordActivity = ({ activity }: { activity: any }): JSX.Element => {
         )}
       </div>
       <div>
-        <h5 className="mb-1 text-sm font-medium">{bigText}</h5>
-        <p className="text-xs text-white/80">{smallText}</p>
-        <p className="text-xs text-white/80">{state}</p>
+        <h5 className="mb-1 text-sm font-medium">
+          {bigText?.substring(0, 16)}
+          {bigText?.length >= 16 && "..."}
+        </h5>
+        <p className="text-xs text-white/80">
+          {smallText?.substring(0, 18)}
+          {smallText?.length >= 18 && "..."}
+        </p>
+        <p className="text-xs text-white/80">
+          {state?.substring(0, 20)}
+          {state?.length >= 20 && "..."}
+        </p>
         {/* <p className="text-xs text-white/80">{time}</p> */}
       </div>
     </div>
@@ -133,20 +140,39 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): JSX.Element => {
           draggable={false}
         />
       </div>
-      <div className="flex h-16 w-[calc(100%-22%)] md:w-[calc(100%-12%)] lg:w-36 flex-col justify-between">
+      <div className="flex h-16 w-[calc(100%-22%)] flex-col justify-between md:w-[calc(100%-12%)] lg:w-36">
         <div className="flex flex-col gap-0.5">
-          <h5 className="text-sm font-medium">{spotify.song}</h5>
-          <p className="text-xs text-white/80">{spotify.artist}</p>
+          <h5 className="text-sm font-medium">
+            {document.body.clientWidth < 850 ? (
+              <>{spotify.song}</>
+            ) : (
+              <>
+                {spotify.song?.substring(0, 14)}
+                {spotify.song?.length >= 14 && "..."}
+              </>
+            )}
+          </h5>
+          <p className="text-xs text-white/80">
+            {document.body.clientWidth < 850 ? (
+              <>{spotify.artist}</>
+            ) : (
+              <>
+                {spotify.artist?.substring(0, 18)}
+                {spotify.artist?.length >= 18 && "..."}
+              </>
+            )}
+          </p>
         </div>
         <div className="h-2 w-full rounded-full bg-[#181919]/70">
           <div
             id="progressbar"
-            className="h-1.5 w-6 rounded-full bg-white"
+            className="h-1.5 w-6 rounded-full bg-green-500"
             style={{
-              width: `${((progress.end - progress.start) /
-                (spotify.timestamps.end - spotify.timestamps.start)) *
+              width: `${
+                ((progress.end - progress.start) /
+                  (spotify.timestamps.end - spotify.timestamps.start)) *
                 100
-                }%`,
+              }%`,
             }}
           ></div>
         </div>

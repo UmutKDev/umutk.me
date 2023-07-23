@@ -64,16 +64,17 @@ const Navigation = ({ isActivityTrue }: React.PropsWithChildren<any>) => {
         onDragEnd={onPageIndicatorDragEnd}
         dragConstraints={dragConstraintsRef}
         animate={{ top: pageIndicatorOffsetWithDecoration }}
-        className="absolute top-0 -right-[1px] h-[58px] w-[1px] bg-white/80"
+        className="absolute -right-[1px] top-0 h-[58px] w-[1px] bg-white/80"
       />
       <ul className="flex w-full flex-col items-center divide-y divide-dashed divide-[#1c1c1c]">
         {NavigationItems.map(({ name, path }) => (
           <li
             ref={dragConstraintsRef}
             key={name}
-            className={`links last:!border-b`}
+            onClick={() => push(path)}
+            className={`links cursor-pointer select-none last:!border-b`}
           >
-            <Link href={path}>{name}</Link>
+            {name}
           </li>
         ))}
       </ul>

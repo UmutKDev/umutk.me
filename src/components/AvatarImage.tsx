@@ -1,5 +1,5 @@
 import Image from "next/image";
-import UmutKImage from "public/images/umutk.jpg";
+import UmutKImage from "public/images/umutk.webp";
 
 const AvatarImage = (): JSX.Element => {
   return (

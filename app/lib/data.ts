@@ -1,9 +1,20 @@
+// Resolve the canonical site URL once at module load.
+// Priority:
+//   1. SITE_URL  — explicit override (set in production / preview env)
+//   2. VERCEL_URL — auto-injected on Vercel deploys (preview gets the unique subdomain)
+//   3. hardcoded production fallback
+const SITE_URL = (() => {
+  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "https://umutk.me";
+})();
+
 export const siteConfig = {
   name: "Umut Kızıloğlu",
   handle: "umutk",
   role: "Full-Stack Developer",
   location: "Osmangazi, Bursa — TR",
-  url: "https://umutk.me",
+  url: SITE_URL,
   email: "umut.kiziloglu@umutk.me",
   phone: "+90 543 738 1962",
   description:

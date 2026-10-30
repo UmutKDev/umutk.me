@@ -71,7 +71,12 @@ const en = {
   updated: "Updated {date}",
   now: { title: "Now", current: "Currently", shell: "Shell", uses: "Tools and stack", usesLink: "What I build with" },
   uses: { title: "Uses" },
-  cv: { experience: "Experience", skills: "Skills" },
+  cv: {
+    summary: "Summary",
+    summaryText:
+      "Full-stack developer in Bursa, Türkiye. Since April 2024 I've built HR products at ThinkCut: reusable UI components, API integrations and server-rendered pages tuned for speed and search. Before that I shipped client projects at Dijital Sahne with Node.js, TypeScript and PostgreSQL. I work in React, Next.js, NestJS, PostgreSQL, Redis and Docker.",
+    location: "Bursa, Türkiye",
+    experience: "Experience", skills: "Skills", pdf: "Download PDF" },
   close: { title: "Write the next entry.", memoji: "Umut's memoji", sign: "Umut, Osmangazi, Bursa", elsewhere: "Elsewhere" },
   notFound: { title: "This page isn't in the record", back: "Back to the home page" },
   meta: {

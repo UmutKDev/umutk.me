@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { usePathname } from "next/navigation";
 import type { Dict } from "@/app/lib/dictionaries/en";
-import { projects, skillGroups } from "@/app/lib/content";
+import { projects, skillGroups, skillItems } from "@/app/lib/content";
 import { locales, siteConfig, stripLocale, type Locale } from "@/app/lib/site";
 
 type Entry = { cmd: string; out: string[] };
@@ -38,7 +38,7 @@ export function Terminal({ lang, dict }: { lang: Locale; dict: Dict["terminal"] 
       case "work":
         return projects.map((p) => `${p.name}: /${lang}/work/${p.slug}`);
       case "stack":
-        return skillGroups.map((g) => `${g.label[lang]}: ${g.items.join(", ")}`);
+        return skillGroups.map((g) => `${g.label[lang]}: ${skillItems(g, lang)}`);
       case "contact":
         return [siteConfig.email, ...siteConfig.links.map((l) => l.href)];
       case "lang":

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getDictionary, type Locale } from "@/app/lib/i18n";
 import { buildMetadata } from "@/app/lib/seo";
-import { skillGroups } from "@/app/lib/content";
+import { skillGroups, skillItems } from "@/app/lib/content";
 import { StructuredData, breadcrumb, webPage } from "@/app/components/StructuredData";
 import { Updated } from "@/app/components/Updated";
 
@@ -35,7 +35,7 @@ export default async function Uses({ params }: PageProps<"/[lang]/uses">) {
           {skillGroups.map((g) => (
             <div key={g.label.en}>
               <dt>{g.label[lang]}</dt>
-              <dd>{g.items.join(", ")}</dd>
+              <dd>{skillItems(g, lang)}</dd>
             </div>
           ))}
         </dl>

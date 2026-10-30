@@ -38,7 +38,7 @@ const tr = {
     contact: "İletişim",
     cv: "Özgeçmiş",
     intro:
-      "Ben Umut Kızıloğlu, Bursa'da çalışan bir full-stack geliştiriciyim. Nisan 2024'ten beri ThinkCut'ta İK ürünleri geliştiriyorum: tekrar kullanılabilir arayüz bileşenleri, API entegrasyonları ve hız ile arama için ayarlanmış, sunucuda oluşturulan sayfalar. Öncesinde Dijital Sahne'de Node.js, TypeScript ve PostgreSQL ile müşteri projeleri yayına aldım. React, Next.js, NestJS, PostgreSQL, Redis ve Docker ile çalışıyorum.",
+      "Ben Umut Kızıloğlu, Bursa'da çalışan bir full-stack geliştiriciyim. Nisan 2024'ten beri ThinkCut'ta İK ürünleri geliştiriyorum: tekrar kullanılabilir arayüz bileşenleri, API entegrasyonları ve hız ve arama motorları için iyileştirilmiş, sunucuda oluşturulan sayfalar. Öncesinde Dijital Sahne'de Node.js, TypeScript ve PostgreSQL ile müşteri projeleri yayına aldım. React, Next.js, NestJS, PostgreSQL, Redis ve Docker ile çalışıyorum.",
   },
   record: {
     title: "Her rol, bir diff olarak",
@@ -73,7 +73,12 @@ const tr = {
   updated: "Güncelleme: {date}",
   now: { title: "Şimdi", current: "Şu an", shell: "Terminal", uses: "Araçlar", usesLink: "Neyle geliştirdiğim" },
   uses: { title: "Kullandıklarım" },
-  cv: { experience: "Deneyim", skills: "Yetkinlikler" },
+  cv: {
+    summary: "Özet",
+    summaryText:
+      "Bursa'da çalışan bir full-stack geliştiriciyim. Nisan 2024'ten beri ThinkCut'ta İK ürünleri geliştiriyorum: tekrar kullanılabilir arayüz bileşenleri, API entegrasyonları ve hız ve arama motorları için iyileştirilmiş, sunucuda oluşturulan sayfalar. Öncesinde Dijital Sahne'de Node.js, TypeScript ve PostgreSQL ile müşteri projeleri yayına aldım. React, Next.js, NestJS, PostgreSQL, Redis ve Docker ile çalışıyorum.",
+    location: "Bursa, Türkiye",
+    experience: "Deneyim", skills: "Yetkinlikler", pdf: "PDF'i indir" },
   close: { title: "Sıradaki kaydı birlikte yazalım.", memoji: "Umut'un memojisi", sign: "Umut, Osmangazi, Bursa", elsewhere: "Diğer hesaplar" },
   notFound: { title: "Bu sayfa kayıtta yok", back: "Ana sayfaya dön" },
   meta: {

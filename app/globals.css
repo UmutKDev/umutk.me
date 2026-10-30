@@ -138,3 +138,27 @@
   .rows dd { margin: 0; }
   @media (min-width: 60rem) { .rows > div { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: baseline; } .rows dt { grid-column: span 4; } .rows dd { grid-column: span 8; } }
 }
+
+/* /cv on paper: white ground, black ink, A4. Only the print media query, so the screen is untouched. */
+@page { size: A4; margin: 16mm 16mm 18mm; }
+@media print {
+  :root {
+    --color-paper: oklch(100% 0 0); --color-paper-2: oklch(100% 0 0); --color-paper-3: oklch(100% 0 0);
+    --color-ink: oklch(18% 0.005 250); --color-ink-2: oklch(26% 0.006 250); --color-muted: oklch(42% 0.008 250);
+    --color-rule: oklch(82% 0.005 250); --color-rule-2: oklch(70% 0.008 250); --color-cool: oklch(36% 0.08 245);
+    --text-sm: 9.5pt; --text-md: 10.5pt; --text-lead: 11.5pt; --text-title: 11.5pt; --text-section: 13pt; --text-display: 22pt;
+    --space-lg: 3mm; --space-xl: 5mm; --space-2xl: 7mm; --section-gap-s: 7mm; --section-gap: 0; --gap-columns: 6mm; --gutter: 0;
+    color-scheme: light;
+  }
+  body { line-height: 1.4; }
+  /* the page alone: no skip link, nav, footer, palette, toast, cursor or analytics */
+  body > :not(main), .cv-download { display: none !important; }
+  a { text-decoration: none; }
+  h2 { max-width: none; }
+  .cv-entry, .rows > div { break-inside: avoid; }
+  .rows > div { padding-block: 1.5mm; }
+  h2 { break-after: avoid; }
+  /* A4 is narrower than the 60rem breakpoint; keep the label column beside the record */
+  .cv-entry, .rows > div { display: grid; grid-template-columns: 40mm minmax(0, 1fr); }
+  .cv-entry > *, .rows dt, .rows dd { grid-column: auto; }
+}

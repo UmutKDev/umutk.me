@@ -56,15 +56,15 @@ export const experiences: Experience[] = [
     role: { en: "Side project, Biletinial", tr: "Yan proje, Biletinial" },
     location: { en: "Remote", tr: "Uzaktan" },
     start: "2024-03",
-    period: { en: "Mar 2024 to May 2024", tr: "Mart–Mayıs 2024" },
+    period: { en: "Mar 2024 to May 2024", tr: "Mart 2024 – Mayıs 2024" },
     bullets: [
       {
         en: "Contributed to Pick a Seat — a ticketing and seat-reservation product spun out of Biletinial.",
-        tr: "Biletinial'dan çıkan bilet ve koltuk rezervasyon ürünü Pick a Seat'e katkı verdim.",
+        tr: "Biletinial'dan çıkan bilet ve koltuk rezervasyon ürünü Pick a Seat'e katkıda bulundum.",
       },
       {
         en: "Built responsive interfaces, integrated APIs, and refined UX for scalable, reliable online booking.",
-        tr: "Duyarlı arayüzler kurdum, API'leri entegre ettim ve ölçeklenebilir, güvenilir online rezervasyon için kullanıcı deneyimini iyileştirdim.",
+        tr: "Duyarlı arayüzler kurdum, API'leri entegre ettim ve ölçeklenebilir, güvenilir çevrim içi rezervasyon için kullanıcı deneyimini iyileştirdim.",
       },
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs"],
@@ -102,11 +102,11 @@ export const experiences: Experience[] = [
     bullets: [
       {
         en: "Supported online sales campaigns and contributed to e-commerce strategy.",
-        tr: "Online satış kampanyalarını destekledim ve e-ticaret stratejisine katkı verdim.",
+        tr: "Çevrim içi satış kampanyalarını destekledim ve e-ticaret stratejisine katkıda bulundum.",
       },
       {
         en: "Optimized SEO and content, ran analytics on Google Analytics, assisted social media advertising.",
-        tr: "SEO ve içerik iyileştirmeleri yaptım, Google Analytics ile analiz yaptım ve sosyal medya reklamlarına destek verdim.",
+        tr: "SEO ve içeriği iyileştirdim, Google Analytics ile analiz yaptım ve sosyal medya reklamlarına destek verdim.",
       },
     ],
   },
@@ -167,8 +167,11 @@ export const projects: Project[] = [
 
 export type SkillGroup = {
   label: L;
-  items: string[];
+  items: (string | L)[]; // proper nouns stay strings, phrases are translated
 };
+
+export const skillItems = (g: SkillGroup, lang: Locale) =>
+  g.items.map((i) => (typeof i === "string" ? i : i[lang])).join(", ");
 
 export const skillGroups: SkillGroup[] = [
   {
@@ -216,7 +219,7 @@ export const skillGroups: SkillGroup[] = [
       "Vercel",
       "Netlify",
       "DigitalOcean",
-      "Server automation",
+      { en: "Server automation", tr: "Sunucu otomasyonu" },
     ],
   },
   {
@@ -225,19 +228,19 @@ export const skillGroups: SkillGroup[] = [
       "Jest",
       "React Testing Library",
       "Cypress",
-      "Unit, integration and E2E tests",
+      { en: "Unit, integration and E2E tests", tr: "Birim, entegrasyon ve E2E testleri" },
     ],
   },
   {
     label: { en: "Process", tr: "Süreç" },
-    items: ["Jira", "Trello", "Agile / Scrum", "Figma", "Miro", "UI/UX collab"],
+    items: ["Jira", "Trello", "Agile / Scrum", "Figma", "Miro", { en: "UI/UX collab", tr: "UI/UX iş birliği" }],
   },
   {
     label: { en: "Other", tr: "Diğer" },
     items: [
-      "SEO & Web Performance",
-      "API design with Swagger and Postman",
-      "i18n and localization",
+      { en: "SEO & Web Performance", tr: "SEO ve web performansı" },
+      { en: "API design with Swagger and Postman", tr: "Swagger ve Postman ile API tasarımı" },
+      { en: "i18n and localization", tr: "i18n ve yerelleştirme" },
     ],
   },
 ];

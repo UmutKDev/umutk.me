@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { versions } from "./content";
+import { skillItems, versions } from "./content";
 
 test("versions diff against the main line, not the branch", () => {
   const [v4, v3, v2, v1] = versions();
@@ -11,4 +11,10 @@ test("versions diff against the main line, not the branch", () => {
   assert.deepEqual(v3.kept, ["TypeScript"]);
   assert.deepEqual(v3.added, ["Next.js", "Tailwind CSS", "REST APIs"]);
   assert.deepEqual([v1.kept, v1.dropped, v1.added], [[], [], []]);
+});
+
+test("skillItems translates phrases and keeps proper nouns", () => {
+  const g = { label: { en: "Q", tr: "K" }, items: ["Jest", { en: "Unit tests", tr: "Birim testleri" }] };
+  assert.equal(skillItems(g, "tr"), "Jest, Birim testleri");
+  assert.equal(skillItems(g, "en"), "Jest, Unit tests");
 });

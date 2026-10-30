@@ -12,6 +12,7 @@ export type NowPlaying = {
   progressMs?: number;
   durationMs?: number;
   fallback?: boolean;
+  configured?: false; // no Spotify env vars: the widget renders nothing
 };
 
 async function getAccessToken(): Promise<string | null> {
@@ -36,14 +37,15 @@ async function getAccessToken(): Promise<string | null> {
     cache: "no-store",
   });
 
-  if (!res.ok) return null;
+  if (!res.ok) throw new Error(`Spotify token ${res.status}`);
   const data = (await res.json()) as { access_token?: string };
-  return data.access_token ?? null;
+  if (!data.access_token) throw new Error("Spotify token missing");
+  return data.access_token;
 }
 
 export async function getNowPlaying(): Promise<NowPlaying> {
   const token = await getAccessToken();
-  if (!token) return { isPlaying: false };
+  if (!token) return { isPlaying: false, configured: false };
 
   const res = await fetch(NOW_PLAYING_URL, {
     headers: { Authorization: `Bearer ${token}` },
@@ -75,7 +77,7 @@ async function getRecentlyPlayed(token: string): Promise<NowPlaying> {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
   });
-  if (!res.ok) return { isPlaying: false };
+  if (!res.ok) throw new Error(`Spotify recent ${res.status}`);
   const data = await res.json();
   const item = data?.items?.[0]?.track;
   if (!item) return { isPlaying: false };

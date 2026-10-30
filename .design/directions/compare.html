@@ -1,0 +1,108 @@
+<title>umutk.me Yön Seçimi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: a working review sheet. One mock at a time at full width, a tab strip to switch, the brief beside it. */
+:root {
+  --bg: #f3f4f2; --surface: #ffffff; --fg: #17191a; --muted: #4f5558; --line: #d6d9d8; --accent: #1f5f8b;
+  --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121415; --surface: #1a1d1f; --fg: #e8eaea; --muted: #9aa1a4; --line: #2c3134; --accent: #7cb4dc; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #121415; --surface: #1a1d1f; --fg: #e8eaea; --muted: #9aa1a4; --line: #2c3134; --accent: #7cb4dc; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font: 16px/1.55 var(--sans); }
+.wrap { max-width: 1480px; margin: 0 auto; padding-block: 32px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: 1.75rem; font-weight: 600; margin: 0 0 4px; text-wrap: balance }
+.lede { color: var(--muted); margin: 0 0 24px; max-width: 70ch }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px }
+.tab { font: inherit; font-weight: 500; color: var(--fg); background: var(--surface); border: 1px solid var(--line);
+  padding: 10px 16px; border-radius: 6px; cursor: pointer; display: flex; gap: 10px; align-items: baseline }
+.tab small { font-family: var(--mono); color: var(--muted); font-size: .8rem }
+.tab[aria-selected="true"] { border-color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent) }
+.tab:focus-visible, .open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start }
+.frame { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden }
+.frame-bar { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: .8rem; color: var(--muted) }
+iframe { display: block; width: 100%; height: min(78vh, 900px); border: 0; background: var(--bg) }
+aside { display: grid; gap: 16px; min-width: 0 }
+aside section { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px }
+aside h2 { font-size: 1.05rem; margin: 0 0 6px }
+aside p, aside li { margin: 0; color: var(--muted); font-size: .95rem }
+aside ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px }
+.idea { color: var(--fg); font-size: 1rem }
+.open { color: var(--accent) }
+@media (max-width: 900px) { .grid { grid-template-columns: minmax(0, 1fr) } iframe { height: 70vh } }
+</style>
+
+<div class="wrap">
+  <h1>Hangi yön?</h1>
+  <p class="lede">Üç yön de aynı gerçek içerikle (data.ts) kuruldu: hero ve bir deneyim bölümü. Hepsi sloplint'ten 0 FAIL ile geçti ve ayrı bir finish review'dan çıktı. Sekmeler arasında geçip içlerinde gezin, sonra sohbette A, B veya C'yi seç (ya da birleştirmek istediğin parçaları yaz).</p>
+
+  <div class="tabs" role="tablist" aria-label="Yönler">
+    <button class="tab" role="tab" id="tab-a" aria-selected="true" aria-controls="panel" data-id="a">A, Console <small>teknik, grafit</small></button>
+    <button class="tab" role="tab" id="tab-b" aria-selected="false" aria-controls="panel" data-id="b">B, Terminal <small>atmosferik, fosfor</small></button>
+    <button class="tab" role="tab" id="tab-c" aria-selected="false" aria-controls="panel" data-id="c">C, Blueprint <small>teknik, prusya mavisi</small></button>
+  </div>
+
+  <div class="grid" id="panel" role="tabpanel" aria-labelledby="tab-a">
+    <div class="frame">
+      <div class="frame-bar"><span id="path">a/index.html</span><a class="open" id="open" href="a/index.html" target="_blank" rel="noopener">Tam ekran aç</a></div>
+      <iframe id="view" src="a/index.html" title="Yön A maketi"></iframe>
+    </div>
+    <aside id="info"></aside>
+  </div>
+</div>
+
+<script>
+const D = {
+  a: { name: "A, Console", idea: "Kariyer, versiyonlanmış bir kayıt olarak anlatılıyor: her rol, bir öncekinden neyin değiştiğini gösteren bir diff.",
+       sig: "ThinkCut (v4) ile Dijital Sahne (v2) yan yana bir diff paneli; v1 ile v4 arası sürüm seçici; who, when, why satırı.",
+       type: "Host Grotesk ve yalnızca tarih ile sürüm numaraları için Atkinson Hyperlegible Mono. Grafit zemin, kişi için amber, sürümler için soğuk mavi.",
+       fit: ["⌘K arama alanı nav'da hazır", "Vaka çalışmaları sürüm notu gibi doğal akar", "En sakin, en kurumsal okunan seçenek"] },
+  b: { name: "B, Terminal", idea: "Portre Umut'un kendi kelimeleriyle basılıyor: memoji, CV metninin karakterlerinden oluşan bir ızgara.",
+       sig: "Canvas üzerinde 110×55 karakterlik memoji; imleç altında hücreler yeşil parlıyor; JS kapalıyken statik bir metin bloğu görünüyor.",
+       type: "Her yerde Martian Mono. Yeşil tonlu siyah zemin, tek bir fosfor yeşili vurgu, keskin köşeler.",
+       fit: ["Terminal ve imleç özellikleri temanın kendisi olur", "En akılda kalıcı imza", "Riski: mobilde portre ilk ekranın altına düşüyor; uzun metinlerde tamamen mono okumak yorabilir"] },
+  c: { name: "C, Blueprint", idea: "Bir geliştirici bir yapı gibi çiziliyor: projeler ölçülendirilmiş teknik çizimler, kariyer ise ölçekli bir kesit.",
+       sig: "2021'den bugüne her rolün gerçek aylarına göre çizilmiş ölçü çizgileri; proje çizim paftaları.",
+       type: "Büyük harf Chakra Petch başlıklar ve IBM Plex Sans. Prusya mavisi zemin, beyaz çizgi mürekkebi.",
+       fit: ["Koyu olmayan tek seçenek", "Zaman çizelgesi ilk ekranda, ölçekli ve doğru", "Riski: tamamı büyük harf başlıklar uzun Türkçe kelimelerde ağırlaşabilir"] },
+};
+const tabs = [...document.querySelectorAll('.tab')];
+function show(id) {
+  const d = D[id];
+  tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.id === id)));
+  document.getElementById('panel').setAttribute('aria-labelledby', 'tab-' + id);
+  const view = document.getElementById('view');
+  view.src = id + '/index.html';
+  view.title = 'Yön ' + id.toUpperCase() + ' maketi';
+  document.getElementById('path').textContent = id + '/index.html';
+  document.getElementById('open').href = id + '/index.html';
+  const info = document.getElementById('info');
+  info.replaceChildren();
+  const sec = (h, body) => { const s = document.createElement('section'); const t = document.createElement('h2'); t.textContent = h; s.append(t, body); info.append(s); };
+  const p = (txt, cls) => { const e = document.createElement('p'); e.textContent = txt; if (cls) e.className = cls; return e; };
+  sec(d.name, p(d.idea, 'idea'));
+  sec('İmza', p(d.sig));
+  sec('Tip ve renk', p(d.type));
+  const ul = document.createElement('ul');
+  d.fit.forEach(f => { const li = document.createElement('li'); li.textContent = f; ul.append(li); });
+  sec('Bu site için', ul);
+  try { localStorage.setItem('dir', id) } catch (e) {}
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => show(t.dataset.id));
+  t.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+    n.focus(); show(n.dataset.id);
+  });
+});
+let start = 'a';
+try { start = localStorage.getItem('dir') || 'a' } catch (e) {}
+show(D[start] ? start : 'a');
+</script>

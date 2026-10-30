@@ -1,0 +1,20 @@
+# Umut Kızıloğlu
+
+> Full-stack developer in Osmangazi, Bursa, Türkiye. React, Next.js, TypeScript, NestJS, PostgreSQL, Redis and Docker. Full-Stack Developer at ThinkCut since April 2024; before that Dijital Sahne (May 2023 to April 2024). The site is in English (/en) and Turkish (/tr).
+
+Contact: umut.kiziloglu@umutk.me
+
+## Pages
+
+- [Home](https://www.umutk.me/en): who Umut is, selected work, experience
+- [CV](https://www.umutk.me/en/cv): experience, skills
+- [ThinkCut HR Suite](https://www.umutk.me/en/work/thinkcut-hr-suite): HR product surfaces, reusable UI system, API integrations, SSR
+- [Pick a Seat](https://www.umutk.me/en/work/pick-a-seat): ticketing and seat reservation for Biletinial (Mar to May 2024)
+- [Uses](https://www.umutk.me/en/uses): stack
+- [Now](https://www.umutk.me/en/now): current focus
+
+## Elsewhere
+
+- [GitHub](https://github.com/UmutKDev)
+- [LinkedIn](https://linkedin.com/in/umutkdev)
+- [X](https://x.com/umutkdev)

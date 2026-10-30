@@ -44,7 +44,7 @@ export function SpotifyWidget({ dict }: { dict: Dict["spotify"] }) {
     : dict.off;
 
   return (
-    <p className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-y border-rule py-4">
+    <p className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-t border-rule py-4">
       <span className="text-sm text-muted">{label}</span>
       {track && (
         <>

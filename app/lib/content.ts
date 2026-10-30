@@ -5,6 +5,8 @@ export type L = Record<Locale, string>;
 
 // Bump when content changes; feeds sitemap lastModified.
 export const contentUpdated = "2026-10-30";
+export const updatedOn = (lang: Locale) =>
+  new Intl.DateTimeFormat(lang, { dateStyle: "long", timeZone: "UTC" }).format(new Date(contentUpdated));
 
 export type Experience = {
   company: string;

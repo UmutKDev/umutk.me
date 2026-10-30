@@ -12,6 +12,7 @@ const en = {
     results: "Commands",
     github: "Open GitHub",
     linkedin: "Open LinkedIn",
+    terminal: "Open terminal",
     close: "Close",
   },
   spotify: {
@@ -59,9 +60,17 @@ const en = {
     branchedFrom: "branched from",
     first: "first entry",
   },
-  work: { title: "Selected work", next: "Next case study", caseStudy: "case study", stack: "Stack" },
-  now: { title: "Now", current: "Currently" },
-  uses: { title: "Uses", stack: "Stack" },
+  work: {
+    title: "Selected work",
+    next: "Next case study",
+    back: "Back to selected work",
+    changed: "What changed",
+    did: "What I did",
+    cv: "Read the full CV",
+  },
+  updated: "Updated {date}",
+  now: { title: "Now", current: "Currently", shell: "Shell", uses: "Tools and stack", usesLink: "What I build with" },
+  uses: { title: "Uses" },
   cv: { experience: "Experience", skills: "Skills" },
   close: { title: "Write the next entry.", memoji: "Umut's memoji", sign: "Umut, Osmangazi, Bursa", elsewhere: "Elsewhere" },
   notFound: { title: "This page isn't in the record", back: "Back to the home page" },
@@ -74,12 +83,12 @@ const en = {
     now: {
       title: "Now — Umut Kızıloğlu",
       description:
-        "What I'm focused on right now: work at ThinkCut, what I'm learning and building as a full-stack developer in Bursa.",
+        "What I'm working on right now: full-stack development at ThinkCut in Bursa.",
     },
     uses: {
       title: "Uses: Tools, Stack & Setup — Umut Kızıloğlu",
       description:
-        "The editor, hardware, frameworks and services I use daily as a full-stack developer: React, Next.js, NestJS, PostgreSQL, Docker and more.",
+        "The frameworks, languages and tools I use daily as a full-stack developer: React, Next.js, NestJS, PostgreSQL, Docker and more.",
     },
     cv: {
       title: "CV — Umut Kızıloğlu, Full-Stack Developer",

@@ -14,6 +14,7 @@ const tr = {
     results: "Komutlar",
     github: "GitHub'ı aç",
     linkedin: "LinkedIn'i aç",
+    terminal: "Terminali aç",
     close: "Kapat",
   },
   spotify: {
@@ -61,9 +62,17 @@ const tr = {
     branchedFrom: "dallandığı sürüm:",
     first: "ilk kayıt",
   },
-  work: { title: "Seçili işler", next: "Sonraki vaka çalışması", caseStudy: "vaka çalışması", stack: "Stack" },
-  now: { title: "Şimdi", current: "Şu an" },
-  uses: { title: "Kullandıklarım", stack: "Stack" },
+  work: {
+    title: "Seçili işler",
+    next: "Sonraki vaka çalışması",
+    back: "Seçili işlere dön",
+    changed: "Neler değişti",
+    did: "Neler yaptım",
+    cv: "Özgeçmişin tamamını oku",
+  },
+  updated: "Güncelleme: {date}",
+  now: { title: "Şimdi", current: "Şu an", shell: "Terminal", uses: "Araçlar", usesLink: "Neyle geliştirdiğim" },
+  uses: { title: "Kullandıklarım" },
   cv: { experience: "Deneyim", skills: "Yetkinlikler" },
   close: { title: "Sıradaki kaydı birlikte yazalım.", memoji: "Umut'un memojisi", sign: "Umut, Osmangazi, Bursa", elsewhere: "Diğer hesaplar" },
   notFound: { title: "Bu sayfa kayıtta yok", back: "Ana sayfaya dön" },
@@ -74,14 +83,14 @@ const tr = {
         "Bursa'da React, Next.js, TypeScript, NestJS ve PostgreSQL ile ölçeklenebilir web uygulamaları geliştiren full-stack geliştirici. Şu an ThinkCut'ta.",
     },
     now: {
-      title: "Şu An — Umut Kızıloğlu",
+      title: "Şimdi — Umut Kızıloğlu",
       description:
-        "Şu an neye odaklandığım: ThinkCut'taki işim, öğrendiklerim ve Bursa'da full-stack geliştirici olarak üzerinde çalıştıklarım.",
+        "Şu an üzerinde çalıştığım iş: Bursa'da, ThinkCut'ta full-stack geliştirme.",
     },
     uses: {
       title: "Kullandıklarım: Araçlar ve Kurulum — Umut Kızıloğlu",
       description:
-        "Full-stack geliştirici olarak her gün kullandığım editör, donanım, framework ve servisler: React, Next.js, NestJS, PostgreSQL, Docker ve fazlası.",
+        "Full-stack geliştirici olarak her gün kullandığım framework, dil ve araçlar: React, Next.js, NestJS, PostgreSQL, Docker ve fazlası.",
     },
     cv: {
       title: "Özgeçmiş (CV) — Umut Kızıloğlu, Full-Stack Geliştirici",

@@ -8,7 +8,7 @@ import { SearchPill } from "./SearchPill";
 
 export function Nav({ lang, dict }: { lang: Locale; dict: Dict }) {
   const links = [
-    { href: `/${lang}#work`, label: dict.nav.work },
+    { href: `/${lang}#work`, label: dict.nav.work, section: `/${lang}/work/` },
     { href: `/${lang}/now`, label: dict.nav.now },
     { href: `/${lang}/uses`, label: dict.nav.uses },
     { href: `/${lang}/cv`, label: dict.nav.cv },

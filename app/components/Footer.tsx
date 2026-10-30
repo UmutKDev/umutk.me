@@ -1,13 +1,13 @@
 import Image from "next/image";
 import type { Dict } from "@/app/lib/dictionaries/en";
 import type { Locale } from "@/app/lib/i18n";
-import { contentUpdated } from "@/app/lib/content";
+import { contentUpdated, updatedOn } from "@/app/lib/content";
 import { siteConfig } from "@/app/lib/site";
 import memoji from "@/public/memoji.png";
 
 // The letter close: a face, a line to write to, a signature with the date the record was last touched.
 export function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
-  const date = new Intl.DateTimeFormat(lang, { dateStyle: "long", timeZone: "UTC" }).format(new Date(contentUpdated));
+  const date = updatedOn(lang);
   return (
     <footer id="contact" className="border-t border-rule bg-paper-3 py-[var(--section-gap-s)]">
       <div className="container grid grid-cols-12 items-start gap-x-[var(--gap-columns)] gap-y-[var(--space-lg)]">

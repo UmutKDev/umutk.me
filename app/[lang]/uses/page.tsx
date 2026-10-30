@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getDictionary, type Locale } from "@/app/lib/i18n";
 import { buildMetadata } from "@/app/lib/seo";
 import { skillGroups } from "@/app/lib/content";
+import { StructuredData, breadcrumb, webPage } from "@/app/components/StructuredData";
+import { Updated } from "@/app/components/Updated";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/uses">): Promise<Metadata> {
   const lang = (await params).lang as Locale;
@@ -15,17 +17,29 @@ export default async function Uses({ params }: PageProps<"/[lang]/uses">) {
   const dict = await getDictionary(lang);
 
   return (
-    <article className="container py-[var(--space-2xl)]">
-      <h1>{dict.uses.title}</h1>
-      <h2 id="stack" className="mt-16">{dict.uses.stack}</h2>
-      <dl className="mt-6 grid gap-6">
-        {skillGroups.map((g) => (
-          <div key={g.label.en}>
-            <dt className="text-sm text-muted">{g.label[lang]}</dt>
-            <dd>{g.items.join(", ")}</dd>
-          </div>
-        ))}
-      </dl>
-    </article>
+    <>
+      <StructuredData
+        lang={lang}
+        nodes={[
+          webPage(lang, "/uses", dict.meta.uses),
+          breadcrumb(lang, [
+            [dict.nav.home, ""],
+            [dict.uses.title, "/uses"],
+          ]),
+        ]}
+      />
+      <article className="container pt-[var(--space-2xl)] pb-[var(--section-gap)]">
+        <h1>{dict.uses.title}</h1>
+        <Updated lang={lang} text={dict.updated} />
+        <dl id="stack" className="rows mt-[var(--space-xl)] border-b border-rule">
+          {skillGroups.map((g) => (
+            <div key={g.label.en}>
+              <dt>{g.label[lang]}</dt>
+              <dd>{g.items.join(", ")}</dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+    </>
   );
 }

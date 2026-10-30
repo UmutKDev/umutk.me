@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { usePathname } from "next/navigation";
 import type { Dict } from "@/app/lib/dictionaries/en";
 import { projects, skillGroups } from "@/app/lib/content";
@@ -14,6 +14,19 @@ export function Terminal({ lang, dict }: { lang: Locale; dict: Dict["terminal"] 
   const [log, setLog] = useState<Entry[]>([{ cmd: "help", out: [dict.help] }]);
   const [value, setValue] = useState("");
   const id = useId();
+  const input = useRef<HTMLInputElement>(null);
+
+  // the palette's "Open terminal" leaves a one-time marker; a plain visit to /now#shell does not pull focus
+  useEffect(() => {
+    try {
+      if (!sessionStorage.getItem("focus-shell")) return;
+      sessionStorage.removeItem("focus-shell");
+    } catch {
+      return;
+    }
+    const t = setTimeout(() => input.current?.focus());
+    return () => clearTimeout(t);
+  }, []);
 
   // null clears the log
   const run = (cmd: string, arg?: string): string[] | null => {
@@ -71,13 +84,14 @@ export function Terminal({ lang, dict }: { lang: Locale; dict: Dict["terminal"] 
           <span className="sr-only">{dict.label}</span>
         </label>
         <input
+          ref={input}
           id={id}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           autoComplete="off"
           autoCapitalize="none"
           spellCheck={false}
-          className="min-h-11 min-w-0 flex-1 rounded-pill bg-transparent px-2 text-ink"
+          className="min-h-11 min-w-0 flex-1 rounded-none border-0 border-b border-muted bg-transparent px-1 text-ink"
         />
         <button
           type="submit"

@@ -1,5 +1,6 @@
 import type { Locale } from "@/app/lib/i18n";
 import { siteConfig } from "@/app/lib/site";
+import { contentUpdated } from "@/app/lib/content";
 
 // Escape any closing </script> sequence so embedded JSON-LD can never break out.
 // Static data in this component never contains it, but defense-in-depth is cheap.
@@ -7,9 +8,38 @@ function safeJson(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
-export function StructuredData({ lang }: { lang: Locale }) {
-  const person = `${siteConfig.url}/#person`;
-  const website = `${siteConfig.url}/#website`;
+export const ids = { person: `${siteConfig.url}/#person`, website: `${siteConfig.url}/#website` };
+
+// Home › … › page, from [name, locale-less path] pairs
+export const breadcrumb = (lang: Locale, items: [string, string][]) => ({
+  "@type": "BreadcrumbList",
+  itemListElement: items.map(([name, path], i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name,
+    item: `${siteConfig.url}/${lang}${path}`,
+  })),
+});
+
+// A read page (/now, /uses): dated, about the person.
+export const webPage = (lang: Locale, path: string, meta: { title: string; description: string }) => {
+  const url = `${siteConfig.url}/${lang}${path}`;
+  return {
+    "@type": "WebPage",
+    "@id": url,
+    url,
+    name: meta.title,
+    description: meta.description,
+    inLanguage: lang,
+    dateModified: contentUpdated,
+    about: { "@id": ids.person },
+    isPartOf: { "@id": ids.website },
+  };
+};
+
+// Person and WebSite on every page; `nodes` describe the page itself (home: the ProfilePage).
+export function StructuredData({ lang, nodes }: { lang: Locale; nodes?: object[] }) {
+  const { person, website } = ids;
   const pageUrl = `${siteConfig.url}/${lang}`;
 
   const graph = {
@@ -51,14 +81,16 @@ export function StructuredData({ lang }: { lang: Locale }) {
         inLanguage: ["en", "tr"],
         author: { "@id": person },
       },
-      {
-        "@type": "ProfilePage",
-        "@id": `${pageUrl}#profile`,
-        url: pageUrl,
-        inLanguage: lang,
-        isPartOf: { "@id": website },
-        mainEntity: { "@id": person },
-      },
+      ...(nodes ?? [
+        {
+          "@type": "ProfilePage",
+          "@id": `${pageUrl}#profile`,
+          url: pageUrl,
+          inLanguage: lang,
+          isPartOf: { "@id": website },
+          mainEntity: { "@id": person },
+        },
+      ]),
     ],
   };
 

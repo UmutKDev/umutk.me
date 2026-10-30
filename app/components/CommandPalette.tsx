@@ -42,6 +42,18 @@ export default function CommandPalette({ lang, dict, open, onClose }: Props) {
     { label: dict.nav.now, run: go(`/${lang}/now`) },
     { label: dict.nav.uses, run: go(`/${lang}/uses`) },
     { label: dict.nav.cv, run: go(`/${lang}/cv`) },
+    {
+      label: dict.palette.terminal,
+      run: () =>
+        rest === "/now"
+          ? setTimeout(() => document.querySelector<HTMLInputElement>("#shell input")?.focus()) // after the dialog hands focus back
+          : (() => {
+              try {
+                sessionStorage.setItem("focus-shell", "1");
+              } catch {}
+              router.push(`/${lang}/now#shell`);
+            })(),
+    },
     { label: dict.palette.switchLang, lang: other, run: go(`/${other}${rest}`) },
     {
       label: dict.palette.copyEmail,

@@ -39,6 +39,7 @@ export function SpotifyWidget() {
 
   useEffect(() => {
     cancelledRef.current = false;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- pre-existing; component is redesigned in M4
     load();
     const interval = setInterval(load, POLL_MS);
     return () => {

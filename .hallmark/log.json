@@ -1,0 +1,47 @@
+[
+ {
+  "shape": "Manifesto",
+  "theme": "console",
+  "axes": "dark/grotesk-sans/chromatic-amber",
+  "hero": "Banner",
+  "nav": "search-led bar",
+  "footer": "letter close",
+  "imagery": "none",
+  "photos": [],
+  "entry": "direction-a",
+  "sections": [
+   "hero",
+   "record",
+   "close"
+  ],
+  "signature": "career as a diff",
+  "waived": [
+   "59"
+  ],
+  "prompt": "umutk.me redesign, direction A chosen",
+  "date": "2026-10-30",
+  "mode": "build"
+ },
+ {
+  "shape": "Index-First",
+  "theme": "terminal",
+  "axes": "dark/mono/chromatic-green",
+  "hero": "Stage reversed",
+  "nav": "masthead",
+  "footer": "letter close",
+  "imagery": "memoji as glyph grid from CV text; 1 screenshot slot",
+  "photos": [],
+  "entry": "direction b",
+  "fingerprint": "index-first/stage/masthead/letter/glyph/index",
+  "sections": [
+   "hero",
+   "index (case + log rows)",
+   "letter close"
+  ],
+  "signature": "the memoji printed in the characters of the CV",
+  "waived": [],
+  "prompt": "umutk.me redesign direction B, terminal",
+  "date": "2026-10-30",
+  "mode": "build"
+ }
+]

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { siteConfig } from "@/app/lib/data";
+import { siteConfig } from "@/app/lib/site";
 
 type Action = {
   id: string;
@@ -195,6 +195,7 @@ export function CommandPalette() {
 
   // reset active when query changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- pre-existing; component is redesigned in M4
     setActive(0);
   }, [query]);
 

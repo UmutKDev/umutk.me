@@ -13,6 +13,7 @@ export function CustomCursor() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const fine = window.matchMedia("(pointer: fine)").matches;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- pre-existing; component is redesigned in M4
     setEnabled(fine);
     if (!fine) return;
 

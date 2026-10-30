@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/app/lib/data";
+import { siteConfig } from "@/app/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -9,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     scope: "/",
     display: "standalone",
-    background_color: "#0a0907",
-    theme_color: "#0a0907",
+    background_color: "#0d1013",
+    theme_color: "#0d1013",
     orientation: "portrait-primary",
     icons: [
       { src: "/icon", sizes: "32x32", type: "image/png" },

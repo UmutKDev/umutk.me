@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { siteConfig } from "./lib/data";
+import { siteConfig } from "@/app/lib/site";
 
 export const alt = `${siteConfig.name} — ${siteConfig.role}`;
 export const size = { width: 1200, height: 630 };
@@ -180,7 +180,7 @@ export default async function OpengraphImage() {
             display: "flex",
           }}
         >
-          /// {siteConfig.role}
+          {`/// ${siteConfig.role}`}
         </div>
 
         {/* big name */}

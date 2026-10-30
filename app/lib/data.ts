@@ -1,12 +1,15 @@
 // Resolve the canonical site URL once at module load.
 // Priority:
-//   1. SITE_URL  — explicit override (set in production / preview env)
-//   2. VERCEL_URL — auto-injected on Vercel deploys (preview gets the unique subdomain)
-//   3. hardcoded production fallback
+//   1. SITE_URL  — explicit override
+//   2. production deploys — canonical domain (never VERCEL_URL: per-deployment hosts are noindexed)
+//   3. VERCEL_URL — preview deploys get their unique subdomain
+//   4. hardcoded canonical fallback (apex 308s to www, so www is canonical)
+const CANONICAL_URL = "https://www.umutk.me";
 const SITE_URL = (() => {
   if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");
+  if (process.env.VERCEL_ENV === "production") return CANONICAL_URL;
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return "https://umutk.me";
+  return CANONICAL_URL;
 })();
 
 export const siteConfig = {

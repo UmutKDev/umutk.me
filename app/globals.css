@@ -1,8 +1,9 @@
 /* Hallmark · shape: Manifesto · genre: modern-minimal · theme: Console (deal 2/3, seed personal-umut-full-stack-developer-cabc·6c0743df·2026-10-30·r0) · job: hire · draw: 8ca681
  * hero: Banner · nav: search-led bar · footer: letter close · imagery: none (memoji in the close; project screenshots absent) · signature: the career as a diff, v4 ThinkCut against v2 on the first screen, v1 to v4 behind a version picker · console: graphite
  * axes: dark/grotesk-sans/chromatic-amber · posture: restrained · contrast: pass · fold: pass · v2.0.0
- * ported from .design/directions/a/ (tokens.css verbatim, base.css rules below); page components land in M4 */
+ * ported from .design/directions/a/ (tokens.css verbatim, base.css rules below); M4: home in React (hero, the career diff, selected work, the 60-word intro), ⌘K palette, cursor ring, terminal, Spotify row */
 /* Hallmark · pre-emit critique: P4 H4 E4 S5 R5 V4 · weakest: P, a record reads as neutral; the diff shows what was dropped as well as added, which a reader can disagree with */
+/* Hallmark · dismissed F4 · the selected version tab is a cool-tint state of the picker, not a second filled action; Contact is the only amber fill */
 @import "tailwindcss";
 @import "./styles/tokens.css";
 
@@ -28,6 +29,7 @@
   --color-accent: var(--color-accent);
   --color-accent-ink: var(--color-accent-ink);
   --color-cool: var(--color-cool);
+  --color-cool-soft: var(--color-cool-soft);
   --color-ok: var(--color-ok);
   --color-bad: var(--color-bad);
   --font-display: var(--font-display);
@@ -59,5 +61,71 @@
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+/* home: the career record, a version picker over server-rendered diff panels (ported from mock A's page.css) */
+@layer components {
+  .m { font-family: var(--font-outlier); font-size: var(--text-sm); font-variant-numeric: tabular-nums slashed-zero; }
+  .cool { color: var(--color-cool); }
+  .person { color: var(--color-accent); }
+
+  .record-head { display: flex; align-items: end; justify-content: space-between; gap: var(--space-lg); flex-wrap: wrap; margin-bottom: var(--space-xl); }
+  .versions { display: flex; border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-pill); overflow: hidden; }
+  .versions button { min-height: 44px; padding: 0 var(--space-md); border: 0; border-left: var(--rule-hair) solid var(--color-rule); background: var(--color-paper-2); color: var(--color-muted); font-size: var(--text-sm); font-weight: 500; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+  .versions button:first-child { border-left: 0; }
+  .versions button:hover { color: var(--color-ink); }
+  .versions button:active { transform: translateY(1px); }
+  .versions button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -2px; }
+  .versions button[aria-selected="true"] { background: var(--color-cool-soft); color: var(--color-ink); box-shadow: inset 0 -2px 0 var(--color-cool); }
+
+  .record { display: grid; gap: var(--space-xl); }
+  /* before hydration only the newest panel shows, so the page doesn't jump; without JS every panel shows and the picker hides */
+  @media (scripting: enabled) { .record:not([data-live]) > :not(:first-child) { display: none; } }
+  @media (scripting: none) { .versions { display: none; } }
+  .version { border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-paper-2); overflow: hidden; }
+  .version__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-md); padding: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+  .version__head h3 { letter-spacing: -0.01em; }
+  .version__head p { color: var(--color-muted); font-size: var(--text-sm); white-space: nowrap; }
+
+  .diff { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .diff th, .diff td { padding: var(--space-md) var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); text-align: left; vertical-align: top; font-weight: 400; }
+  .diff thead th { padding-block: var(--space-sm); color: var(--color-muted); font-size: var(--text-sm); font-weight: 500; }
+  .diff thead th:nth-child(1) { width: 3rem; }
+  .diff thead th:nth-child(2) { width: 11rem; }
+  .diff tbody th { color: var(--color-ink-2); font-weight: 500; }
+  .diff td { color: var(--color-ink-2); }
+  .diff .g { padding-right: 0; font-family: var(--font-outlier); color: var(--color-muted); }
+  .del .g { color: var(--color-bad); }
+  .add .g { color: var(--color-ok); }
+  .diff tr.chg, .diff tr.del, .diff tr.add { background: var(--color-paper-3); }
+  .diff td.was { background: var(--color-bad-soft); color: var(--color-ink); }
+  .diff td.now { background: var(--color-ok-soft); color: var(--color-ink); }
+
+  .sig { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
+  .sig > div { padding: var(--space-md) var(--space-lg); border-left: var(--rule-hair) solid var(--color-rule); }
+  .sig > div:first-child { border-left: 0; }
+  .sig dt { color: var(--color-muted); font-size: var(--text-sm); font-weight: 500; }
+  .sig dd { margin: var(--space-2xs) 0 0; }
+  .sig .sig__why { grid-column: 1 / -1; border-left: 0; border-top: var(--rule-hair) solid var(--color-rule); }
+  .sig__why dd { font-size: var(--text-lead); line-height: 1.4; color: var(--color-ink); max-width: 60ch; }
+
+  @media (max-width: 40rem) {
+    .versions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+    .versions button { border-left: 0; border-top: var(--rule-hair) solid var(--color-rule); }
+    .versions button:nth-child(-n+2) { border-top: 0; }
+    .versions button:nth-child(even) { border-left: var(--rule-hair) solid var(--color-rule); }
+    .version__head { flex-direction: column; padding: var(--space-md); }
+    .diff thead { display: none; }
+    .diff, .diff tbody { display: block; }
+    .diff tr { display: grid; grid-template-columns: 2rem minmax(0, 1fr); border-bottom: var(--rule-hair) solid var(--color-rule); }
+    .diff th, .diff td { border: 0; padding: var(--space-xs) var(--space-md) var(--space-xs) 0; }
+    .diff .g { grid-column: 1; grid-row: 1; padding-left: var(--space-md); padding-top: var(--space-sm); }
+    .diff tbody th, .diff tbody td:not(.g) { grid-column: 2; }
+    .diff tbody th { padding-top: var(--space-sm); }
+    .diff td:empty:not(.g) { display: none; }
+    .diff td:last-child { padding-bottom: var(--space-sm); }
+    .diff td.was, .diff td.now { grid-column: 1 / -1; padding-left: 2rem; }
+    .sig > div { padding: var(--space-sm) var(--space-md); }
   }
 }

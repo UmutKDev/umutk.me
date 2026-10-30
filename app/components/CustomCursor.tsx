@@ -1,113 +1,36 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-const INTERACTIVE_SELECTOR =
-  "a, button, [role='button'], input, textarea, select, [data-cursor='hover']";
-
+// A ring that trails the pointer. The native cursor always stays; the ring hides during keyboard use.
 export function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
+  const ring = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- pre-existing; component is redesigned in M4
-    setEnabled(fine);
-    if (!fine) return;
-
-    document.documentElement.classList.add("cursor-none");
-
-    let dotX = window.innerWidth / 2;
-    let dotY = window.innerHeight / 2;
-    let ringX = dotX;
-    let ringY = dotY;
-    let raf = 0;
-    let hovering = false;
-    let pressed = false;
-
-    const onMove = (e: MouseEvent) => {
-      dotX = e.clientX;
-      dotY = e.clientY;
+    const el = ring.current;
+    const mq = matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)");
+    if (!el) return;
+    const hide = () => delete el.dataset.on;
+    const move = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse" || !mq.matches) return hide();
+      el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      el.dataset.on = "";
     };
-    const onDown = () => {
-      pressed = true;
-    };
-    const onUp = () => {
-      pressed = false;
-    };
-    const onOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      hovering = !!target?.closest(INTERACTIVE_SELECTOR);
-    };
-    const onLeave = () => {
-      if (ringRef.current) ringRef.current.style.opacity = "0";
-      if (dotRef.current) dotRef.current.style.opacity = "0";
-    };
-    const onEnter = () => {
-      if (ringRef.current) ringRef.current.style.opacity = "1";
-      if (dotRef.current) dotRef.current.style.opacity = "1";
-    };
-
-    const tick = () => {
-      ringX += (dotX - ringX) * 0.18;
-      ringY += (dotY - ringY) * 0.18;
-
-      const ring = ringRef.current;
-      const dot = dotRef.current;
-      const scale = hovering ? 1.9 : pressed ? 0.7 : 1;
-      if (ring) {
-        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${scale})`;
-      }
-      if (dot) {
-        dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%) scale(${
-          hovering ? 0.4 : 1
-        })`;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-
-    window.addEventListener("mousemove", onMove, { passive: true });
-    window.addEventListener("mousedown", onDown);
-    window.addEventListener("mouseup", onUp);
-    document.addEventListener("mouseover", onOver);
-    document.documentElement.addEventListener("mouseleave", onLeave);
-    document.documentElement.addEventListener("mouseenter", onEnter);
-    raf = requestAnimationFrame(tick);
-
+    window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("keydown", hide);
+    document.documentElement.addEventListener("pointerleave", hide);
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mousedown", onDown);
-      window.removeEventListener("mouseup", onUp);
-      document.removeEventListener("mouseover", onOver);
-      document.documentElement.removeEventListener("mouseleave", onLeave);
-      document.documentElement.removeEventListener("mouseenter", onEnter);
-      document.documentElement.classList.remove("cursor-none");
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("keydown", hide);
+      document.documentElement.removeEventListener("pointerleave", hide);
     };
   }, []);
 
-  if (!enabled) return null;
-
   return (
-    <>
-      <div
-        ref={ringRef}
-        aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[90] h-9 w-9 rounded-full border border-[var(--color-accent)]/70 mix-blend-difference transition-opacity duration-200 will-change-transform"
-        style={{
-          backgroundColor: "transparent",
-          transition: "opacity 0.2s, border-color 0.25s, background-color 0.25s",
-        }}
-        data-hovering="false"
-      />
-      <div
-        ref={dotRef}
-        aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[91] h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] will-change-transform"
-        style={{ transition: "opacity 0.2s, transform 0.1s" }}
-      />
-    </>
+    <div
+      ref={ring}
+      aria-hidden
+      className="pointer-events-none fixed top-0 left-0 z-[600] -mt-4 -ml-4 size-8 rounded-full border border-ink-2/60 opacity-0 transition-opacity duration-150 data-on:opacity-100"
+    />
   );
 }

@@ -1,13 +1,13 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { locales } from "@/app/lib/site";
+import { locales, stripLocale } from "@/app/lib/site";
 
 const names = { en: "English", tr: "Türkçe" };
 
 // Links to the same page in each locale; the path after /{lang} is kept.
 export function LangSwitch({ lang, label }: { lang: string; label: string }) {
-  const rest = usePathname().replace(/^\/[^/]+/, "");
+  const rest = stripLocale(usePathname());
   return (
     <div role="group" aria-label={label} className="flex rounded-pill border border-rule-2 text-sm">
       {locales.map((l) => (

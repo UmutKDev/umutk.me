@@ -15,6 +15,8 @@ const SITE_URL = (() => {
 // Client-safe (i18n.ts is server-only), so proxy and LangSwitch read it from here.
 export const locales = ["en", "tr"] as const;
 export type Locale = (typeof locales)[number];
+// The path after /{lang}, for links to the same page in another locale.
+export const stripLocale = (path: string) => path.replace(/^\/[^/]+/, "");
 
 // shortcut: only tr vs en is decided, so a full negotiator is overkill; upgrade if a third locale lands.
 export function pickLocale(acceptLanguage: string | null): Locale {

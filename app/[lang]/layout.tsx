@@ -7,6 +7,7 @@ import { getDictionary, hasLocale, locales } from "@/app/lib/i18n";
 import { siteConfig } from "@/app/lib/site";
 import { Nav } from "@/app/components/Nav";
 import { Footer } from "@/app/components/Footer";
+import { CustomCursor } from "@/app/components/CustomCursor";
 
 export const dynamicParams = false;
 
@@ -51,7 +52,8 @@ export default async function RootLayout({
         </a>
         <Nav lang={lang} dict={dict} />
         <main id="main">{children}</main>
-        <Footer dict={dict} />
+        <Footer lang={lang} dict={dict} />
+        <CustomCursor />
         <Analytics />
       </body>
     </html>

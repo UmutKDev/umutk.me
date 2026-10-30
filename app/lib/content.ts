@@ -15,6 +15,7 @@ export type Experience = {
   bullets: L[];
   stack?: string[];
   slug?: string; // case study, when one exists
+  branch?: true; // ran beside the main line; later versions diff against the one it branched from
 };
 
 export const experiences: Experience[] = [
@@ -66,6 +67,7 @@ export const experiences: Experience[] = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs"],
     slug: "pick-a-seat",
+    branch: true,
   },
   {
     company: "Dijital Sahne",
@@ -107,6 +109,34 @@ export const experiences: Experience[] = [
     ],
   },
 ];
+
+export type Version = {
+  n: number;
+  exp: Experience;
+  base?: { n: number; exp: Experience };
+  kept: string[];
+  dropped: string[];
+  added: string[];
+};
+
+// Newest first, like the list. Each role diffs against the nearest older role on the main line,
+// so a branch (Pick a Seat) never becomes the base of the role after it.
+export function versions(list: Experience[] = experiences): Version[] {
+  return list.map((exp, i) => {
+    const j = list.findIndex((e, k) => k > i && !e.branch);
+    const base = j < 0 ? undefined : { n: list.length - j, exp: list[j] };
+    const cur = exp.stack ?? [];
+    const prev = base?.exp.stack ?? [];
+    return {
+      n: list.length - i,
+      exp,
+      base,
+      kept: cur.filter((s) => prev.includes(s)),
+      dropped: prev.filter((s) => !cur.includes(s)),
+      added: cur.filter((s) => !prev.includes(s)),
+    };
+  });
+}
 
 export type Project = {
   slug: string;

@@ -12,6 +12,7 @@ export async function GET() {
       },
     });
   } catch {
-    return NextResponse.json({ isPlaying: false }, { status: 200 });
+    // a failed token or API call is an error, not "nothing playing"
+    return NextResponse.json({ isPlaying: false }, { status: 502 });
   }
 }

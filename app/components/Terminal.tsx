@@ -1,118 +1,91 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useId, useState, type FormEvent } from "react";
+import { usePathname } from "next/navigation";
+import type { Dict } from "@/app/lib/dictionaries/en";
+import { projects, skillGroups } from "@/app/lib/content";
+import { locales, siteConfig, stripLocale, type Locale } from "@/app/lib/site";
 
-const COMMANDS = [
-  {
-    cmd: "whoami",
-    out: "umut.kiziloglu — full-stack developer",
-  },
-  {
-    cmd: "cat ./focus.md",
-    out: "next.js · typescript · nestjs · postgres · docker · ssr",
-  },
-  {
-    cmd: "uptime",
-    out: "building reliable web since 2023 · agile · figma → prod",
-  },
-  {
-    cmd: "ssh hello@umutk.me",
-    out: "connection established. welcome.",
-  },
-];
+type Entry = { cmd: string; out: string[] };
 
-export function Terminal() {
-  const [step, setStep] = useState(0);
-  const [typed, setTyped] = useState("");
-  const [phase, setPhase] = useState<"cmd" | "out" | "pause">("cmd");
+// A small shell over the site's own content. Output appears at once: no typing effect.
+export function Terminal({ lang, dict }: { lang: Locale; dict: Dict["terminal"] }) {
+  const rest = stripLocale(usePathname());
+  const [log, setLog] = useState<Entry[]>([{ cmd: "help", out: [dict.help] }]);
+  const [value, setValue] = useState("");
+  const id = useId();
 
-  const current = COMMANDS[step % COMMANDS.length];
-
-  useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-    if (phase === "cmd") {
-      if (typed.length < current.cmd.length) {
-        timeout = setTimeout(() => setTyped(current.cmd.slice(0, typed.length + 1)), 60);
-      } else {
-        timeout = setTimeout(() => {
-          setPhase("out");
-          setTyped("");
-        }, 380);
-      }
-    } else if (phase === "out") {
-      if (typed.length < current.out.length) {
-        timeout = setTimeout(() => setTyped(current.out.slice(0, typed.length + 1)), 22);
-      } else {
-        timeout = setTimeout(() => setPhase("pause"), 1300);
-      }
-    } else {
-      timeout = setTimeout(() => {
-        setStep((s) => s + 1);
-        setTyped("");
-        setPhase("cmd");
-      }, 380);
+  // null clears the log
+  const run = (cmd: string, arg?: string): string[] | null => {
+    switch (cmd) {
+      case "help":
+        return [dict.help];
+      case "whoami":
+        return [dict.whoami];
+      case "work":
+        return projects.map((p) => `${p.name}: /${lang}/work/${p.slug}`);
+      case "stack":
+        return skillGroups.map((g) => `${g.label[lang]}: ${g.items.join(", ")}`);
+      case "contact":
+        return [siteConfig.email, ...siteConfig.links.map((l) => l.href)];
+      case "lang":
+        if (arg !== lang && locales.includes(arg as Locale)) location.assign(`/${arg}${rest}`);
+        return [dict.lang];
+      case "clear":
+        return null;
+      default:
+        return [dict.unknown.replace("{cmd}", cmd)];
     }
-    return () => clearTimeout(timeout);
-  }, [typed, phase, current]);
+  };
 
-  const history = useMemo(() => {
-    const result: { cmd: string; out: string }[] = [];
-    for (let i = Math.max(0, step - 2); i < step; i++) {
-      result.push(COMMANDS[i % COMMANDS.length]);
-    }
-    return result;
-  }, [step]);
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    const line = value.trim();
+    setValue("");
+    if (!line) return;
+    const [cmd, arg] = line.split(/\s+/);
+    const out = run(cmd.toLowerCase(), arg?.toLowerCase());
+    setLog(out ? [...log, { cmd: line, out }] : []);
+  };
 
   return (
-    <div className="text-mono text-[12.5px] leading-relaxed text-[#e8e3d6]">
-      {history.map((h, i) => (
-        <div key={`${h.cmd}-${i}`} className="opacity-45">
-          <Line cmd={h.cmd} out={h.out} done />
-        </div>
-      ))}
-      <div>
-        <Prompt />
-        <span className="text-[#f5f1e8]">
-          {phase === "cmd" ? typed : current.cmd}
-        </span>
-        {phase === "cmd" && <Caret />}
+    <div className="rounded-card border border-rule bg-paper-3 font-mono text-sm">
+      <div role="log" aria-label={dict.output} className="grid gap-3 p-6 empty:p-0">
+        {log.map((e, i) => (
+          <div key={i}>
+            <p className="text-ink">
+              <span aria-hidden className="text-muted">$ </span>
+              {e.cmd}
+            </p>
+            {e.out.map((line, j) => (
+              <p key={j} className="text-ink-2">
+                {line}
+              </p>
+            ))}
+          </div>
+        ))}
       </div>
-      {phase !== "cmd" && (
-        <div className="pl-4 text-[#cfc8b7]">
-          <span className="text-[var(--color-accent-soft)]">›</span>{" "}
-          <span>{phase === "out" ? typed : current.out}</span>
-          {phase === "out" && <Caret />}
-        </div>
-      )}
+      <form onSubmit={submit} className="flex items-center gap-3 border-t border-rule py-2 pr-2 pl-6 first:border-t-0">
+        <label htmlFor={id} className="text-muted">
+          <span aria-hidden>$</span>
+          <span className="sr-only">{dict.label}</span>
+        </label>
+        <input
+          id={id}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          autoComplete="off"
+          autoCapitalize="none"
+          spellCheck={false}
+          className="min-h-11 min-w-0 flex-1 rounded-pill bg-transparent px-2 text-ink"
+        />
+        <button
+          type="submit"
+          className="min-h-11 rounded-pill border border-rule-2 bg-paper-2 px-4 font-body transition-colors hover:bg-rule active:translate-y-px"
+        >
+          {dict.run}
+        </button>
+      </form>
     </div>
-  );
-}
-
-function Prompt() {
-  return (
-    <span className="text-white/55">
-      <span className="text-[var(--color-accent-soft)]">~/umutk</span>
-      <span className="mx-1 text-white/30">$</span>
-    </span>
-  );
-}
-
-function Line({ cmd, out, done }: { cmd: string; out: string; done?: boolean }) {
-  return (
-    <>
-      <div>
-        <Prompt />
-        <span className={done ? "text-white/55" : "text-[#f5f1e8]"}>{cmd}</span>
-      </div>
-      <div className="pl-4 text-white/40">
-        <span className="text-[var(--color-accent-soft)]/60">›</span> {out}
-      </div>
-    </>
-  );
-}
-
-function Caret() {
-  return (
-    <span className="anim-blink ml-0.5 inline-block h-[1.05em] w-[0.55em] -translate-y-[0.1em] bg-[var(--color-accent-soft)] align-middle" />
   );
 }

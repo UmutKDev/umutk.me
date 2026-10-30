@@ -49,6 +49,7 @@ export function StructuredData({ lang, nodes }: { lang: Locale; nodes?: object[]
         "@type": "Person",
         "@id": person,
         name: siteConfig.name,
+        alternateName: "Umut Kiziloglu",
         url: `${siteConfig.url}/en`,
         jobTitle: siteConfig.role,
         email: siteConfig.email,

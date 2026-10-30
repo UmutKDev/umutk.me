@@ -54,7 +54,8 @@ export default async function RootLayout({
         <main id="main">{children}</main>
         <Footer lang={lang} dict={dict} />
         <CustomCursor />
-        <Analytics />
+        {/* the script only exists on Vercel; elsewhere it 404s */}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );

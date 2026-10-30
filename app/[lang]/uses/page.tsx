@@ -8,7 +8,7 @@ import { Updated } from "@/app/components/Updated";
 export async function generateMetadata({ params }: PageProps<"/[lang]/uses">): Promise<Metadata> {
   const lang = (await params).lang as Locale;
   const { meta } = await getDictionary(lang);
-  return buildMetadata({ lang, path: "/uses", ...meta.uses });
+  return buildMetadata({ lang, path: "/uses", ...meta.uses, alt: meta.home.title });
 }
 
 // Hardware, editor and apps are still a content gap; only the stack is known.

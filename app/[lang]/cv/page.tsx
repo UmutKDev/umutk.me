@@ -10,7 +10,7 @@ import { Updated } from "@/app/components/Updated";
 export async function generateMetadata({ params }: PageProps<"/[lang]/cv">): Promise<Metadata> {
   const lang = (await params).lang as Locale;
   const { meta } = await getDictionary(lang);
-  return buildMetadata({ lang, path: "/cv", ...meta.cv });
+  return buildMetadata({ lang, path: "/cv", ...meta.cv, alt: meta.home.title });
 }
 
 const link = "transition-colors hover:text-cool";
@@ -74,7 +74,7 @@ export default async function Cv({ params }: PageProps<"/[lang]/cv">) {
 
         <section aria-labelledby="summary" className="mt-[var(--section-gap-s)]">
           <h2 id="summary">{dict.cv.summary}</h2>
-          <p className="mt-[var(--space-lg)] text-ink-2">{dict.cv.summaryText}</p>
+          <p className="mt-[var(--space-lg)] text-ink-2 min-[60rem]:max-w-[50ch]">{dict.cv.summaryText}</p>
         </section>
 
         <section aria-labelledby="experience" className="mt-[var(--section-gap-s)]">
@@ -101,7 +101,7 @@ export default async function Cv({ params }: PageProps<"/[lang]/cv">) {
                     )}
                   </h3>
                   <p className="mt-1 text-ink-2">{e.role[lang]}</p>
-                  <ul className="mt-3 grid list-disc gap-2 pl-5 text-ink-2">
+                  <ul className="mt-3 grid list-disc gap-2 pl-5 text-ink-2 min-[60rem]:max-w-[50ch]">
                     {e.bullets.map((b) => (
                       <li key={b.en}>{b[lang]}</li>
                     ))}

@@ -18,7 +18,9 @@ export async function generateMetadata({
 }: PageProps<"/[lang]/work/[slug]">): Promise<Metadata> {
   const { lang, slug } = (await params) as { lang: Locale; slug: string };
   const { meta } = await getDictionary(lang);
-  return buildMetadata({ lang, path: `/work/${slug}`, ...meta.work[slug] });
+  const name = projects.find((p) => p.slug === slug)!.name;
+  // alt names what the card shows: the project name, which stays English in both locales
+  return buildMetadata({ lang, path: `/work/${slug}`, ...meta.work[slug], alt: `${name}, ${siteConfig.name}` });
 }
 
 // Experience mode. Until the owner supplies decisions, the home page's version diff for this role
@@ -53,7 +55,6 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/work/[slu
           },
           breadcrumb(lang, [
             [dict.nav.home, ""],
-            [dict.nav.work, "#work"],
             [project.name, `/work/${slug}`],
           ]),
         ]}

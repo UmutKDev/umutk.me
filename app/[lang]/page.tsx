@@ -25,7 +25,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   return (
     <>
       <StructuredData lang={lang} />
-      <section aria-labelledby="hero-title" className="pt-[var(--space-2xl)] pb-[var(--space-xl)] sm:pb-[var(--space-3xl)]">
+      <section aria-labelledby="hero-title" className="pt-[var(--space-2xl)] pb-[var(--section-gap-s)]">
         <div className="container grid grid-cols-12 items-end gap-x-[var(--gap-columns)] gap-y-[var(--space-lg)]">
           <h1 id="hero-title" className="col-span-12 max-w-[16ch] min-[60rem]:col-span-8">
             {dict.hero.title}
@@ -75,8 +75,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </ul>
       </section>
 
-      <section className="container pt-[var(--space-2xl)] pb-[var(--section-gap)]">
-        <p className="max-w-[62ch] text-[length:var(--text-lead)] leading-[1.55] text-ink-2">{dict.hero.intro}</p>
+      <section className="container pb-[var(--section-gap)]">
+        <p className="max-w-[48ch] text-[length:var(--text-lead)] leading-[1.55] text-ink-2">{dict.hero.intro}</p>
       </section>
     </>
   );

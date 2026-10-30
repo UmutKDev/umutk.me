@@ -70,6 +70,7 @@ const tr = {
     did: "Neler yaptım",
     cv: "Özgeçmişin tamamını oku",
   },
+  role: "Full-Stack Yazılım Geliştirici",
   updated: "Güncelleme: {date}",
   now: { title: "Şimdi", current: "Şu an", shell: "Terminal", uses: "Araçlar", usesLink: "Neyle geliştirdiğim" },
   uses: { title: "Kullandıklarım" },

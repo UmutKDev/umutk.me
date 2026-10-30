@@ -11,7 +11,7 @@ import { Updated } from "@/app/components/Updated";
 export async function generateMetadata({ params }: PageProps<"/[lang]/now">): Promise<Metadata> {
   const lang = (await params).lang as Locale;
   const { meta } = await getDictionary(lang);
-  return buildMetadata({ lang, path: "/now", ...meta.now });
+  return buildMetadata({ lang, path: "/now", ...meta.now, alt: meta.home.title });
 }
 
 // The monthly list is still a content gap; only the current role is known.

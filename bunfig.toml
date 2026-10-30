@@ -1,0 +1,3 @@
+[test]
+# bun test runs the unit tests under app/ only; e2e/ belongs to Playwright.
+root = "./app"

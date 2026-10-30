@@ -68,6 +68,7 @@ const en = {
     did: "What I did",
     cv: "Read the full CV",
   },
+  role: "Full-Stack Developer",
   updated: "Updated {date}",
   now: { title: "Now", current: "Currently", shell: "Shell", uses: "Tools and stack", usesLink: "What I build with" },
   uses: { title: "Uses" },

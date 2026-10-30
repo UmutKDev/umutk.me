@@ -15,5 +15,5 @@ export function proxy(request: NextRequest) {
 export const config = {
   // Skips api, _next, metadata image routes and anything with a dot
   // (sitemap.xml, robots.txt, llms.txt, favicon.ico, manifest.webmanifest, public files).
-  matcher: ["/((?!api/|api$|_next/|opengraph-image|icon$|apple-icon$|.*\\..*).*)"],
+  matcher: ["/((?!api/|api$|_next/|icon$|apple-icon$|.*\\..*).*)"],
 };

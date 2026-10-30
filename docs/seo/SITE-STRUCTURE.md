@@ -12,7 +12,7 @@ Date: 2026-10-30.
 | Work history | `app/lib/data.ts` → `experiences` | ThinkCut (Apr 2024–Present), Pick a Seat (Mar–May 2024), Dijital Sahne (May 2023–Apr 2024), Vanelli · Türkün Holding (Sep 2021–Jun 2022, intern) |
 | Projects | `app/lib/data.ts` → `projects` | Pick a Seat; ThinkCut · HR Suite |
 | Current sitemap | `app/sitemap.ts` | Single URL (`siteConfig.url`), no locales |
-| Current robots | `app/robots.ts` | `*` allow `/`, disallow `/api/`, `/_next/` |
+| Robots (since M7) | `app/robots.txt/route.ts` | `*` allow `/`, disallow `/api/`, `Content-Signal: search=yes, ai-input=yes, ai-train=yes`, sitemap |
 
 - `data.ts` contains **no quantitative outcomes** (traffic, conversion, latency, team size). Titles/descriptions below contain no metrics. Case-study pages must add metrics only when supplied by the owner.
 - **Search volumes / keyword difficulty were not measured.** DataForSEO and GSC tools exist in this environment but were not called in this step; the query clusters below are intent-based hypotheses to validate in M0 keyword baseline (GSC queries + DataForSEO `kw_data_google_ads_search_volume` for TR/EN).
@@ -21,8 +21,8 @@ Date: 2026-10-30.
 ## 1. URL tree
 
 ```
-https://umutk.me/
-├── /                         → 308 to /en (or Accept-Language negotiation → /tr|/en); hreflang x-default target = /en
+https://www.umutk.me/
+├── /                         → 307 to /en (or Accept-Language negotiation → /tr|/en); hreflang x-default target = /en
 ├── /en                       Home (EN)
 │   ├── /en/work/pick-a-seat          Case study
 │   ├── /en/work/thinkcut-hr-suite    Case study
@@ -112,12 +112,12 @@ Notes:
 
 | Page | JSON-LD |
 |---|---|
-| Home | `Person` (name, jobTitle "Full-Stack Developer", address Bursa TR, email, `sameAs` GitHub/LinkedIn/X, `worksFor` ThinkCut) + `WebSite` (inLanguage) |
-| work/[slug] | `CreativeWork` or `Article` (author → Person `@id`), `BreadcrumbList` Home › Work › {project} |
-| cv | `ProfilePage` with `mainEntity` Person (`@id` shared), `BreadcrumbList` |
+| Home | `ProfilePage` (mainEntity → Person) + `Person` (name, jobTitle "Full-Stack Developer", address Bursa TR, email, `sameAs` GitHub/LinkedIn/X, `worksFor` ThinkCut) + `WebSite` (inLanguage) |
+| work/[slug] | `CreativeWork` or `Article` (author → Person `@id`), `BreadcrumbList` Home › {project} |
+| cv | `WebPage` + `BreadcrumbList` (ProfilePage lives on home since M5) |
 | now, uses | `WebPage` + `BreadcrumbList` |
 
-Use one stable Person `@id` (`https://umutk.me/#person`) across both locales.
+Use one stable Person `@id` (`https://www.umutk.me/#person`) across both locales.
 
 ## 5. Internal linking plan
 
@@ -157,7 +157,7 @@ Site is small (12 HTML URLs); every page should be ≤ 1 click from home.
 
 ## 6. Crawl / indexing setup (for implementation milestones)
 
-- `robots.txt`: allow all, including AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) per approved plan; keep disallow `/api/`. Drop `/_next/` disallow (blocks nothing Google needs to skip and can hinder rendering checks — verify against current GSC rendering before changing).
+- `robots.txt`: allow all, including AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) per approved plan; keep disallow `/api/`. Done in M7: `/_next/` is no longer disallowed, and `Content-Signal` states search, AI input and AI training are allowed.
 - Sitemap: 12 entries with `alternates.languages`; `lastModified` from content, not `new Date()` (current `app/sitemap.ts` emits build time on every request).
 - Root `/` redirect: use 307/308 or middleware locale negotiation; `/` itself not in the sitemap, `x-default` points to `/en`.
 - Vercel Web Analytics: per-route pageviews to measure locale split and CV/PDF clicks (custom event on PDF download).
